@@ -1,0 +1,3 @@
+[submodule "Siho/vendor/spdlog"]
+	path = Siho/vendor/spdlog
+	url = https://github.com/gabime/spdlog
