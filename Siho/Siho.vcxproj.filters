@@ -4,6 +4,9 @@
     <Filter Include="Siho">
       <UniqueIdentifier>{785F8C7C-6496-8D0D-0D83-7310F998090F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Siho\Events">
+      <UniqueIdentifier>{5CF45C5F-C8A9-D554-519E-CF2BBD52CC58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Siho.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Siho\EntryPoint.h">
       <Filter>Siho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Events\ApplicationEvent.h">
+      <Filter>Siho\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Events\Event.h">
+      <Filter>Siho\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Events\KeyEvent.h">
+      <Filter>Siho\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Events\MouseEvent.h">
+      <Filter>Siho\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Log.h">
       <Filter>Siho</Filter>

@@ -4,6 +4,7 @@
 
 #include "Core.h"
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace Siho {
 	class SIHO_API Log
