@@ -1,12 +1,14 @@
+#include "shpch.h"
 #include "Application.h"
 
 #include "Siho/Events/ApplicationEvent.h"
-#include "Siho/Log.h"
+
+#include <GLFW/glfw3.h>
 
 namespace Siho {
 	Application::Application()
 	{
-
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 	Application::~Application()
@@ -16,9 +18,11 @@ namespace Siho {
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1200, 720);
-		SH_TRACE(e);
-
-		while (true);
+		while (m_Running)
+		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+			m_Window->OnUpdate();
+		}
 	}
 };
