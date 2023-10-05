@@ -43,8 +43,9 @@ namespace Siho {
 		{
 			return GetCategoryFlags() & category;
 		}
-	protected:
 		bool m_Handled = false;
+	protected:
+		// bool m_Handled = false;
 	};
 
 	class EventDispatcher

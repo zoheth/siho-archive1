@@ -40,6 +40,12 @@
     <ClInclude Include="src\Siho\Events\MouseEvent.h">
       <Filter>Siho\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Layer.h">
+      <Filter>Siho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\LayerStack.h">
+      <Filter>Siho</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Log.h">
       <Filter>Siho</Filter>
     </ClInclude>
@@ -53,6 +59,12 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Application.cpp">
+      <Filter>Siho</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Layer.cpp">
+      <Filter>Siho</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\LayerStack.cpp">
       <Filter>Siho</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Log.cpp">
