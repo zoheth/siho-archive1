@@ -5,6 +5,8 @@
 #include "Siho/Events/KeyEvent.h"
 #include "Siho/Events/MouseEvent.h"
 
+#include <Glad/glad.h>
+
 namespace Siho {
 
 	static bool s_GLFWInitialized = false;
@@ -48,7 +50,10 @@ namespace Siho {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+		// Create a windowed mode window and its OpenGL context
 		glfwMakeContextCurrent(m_Window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		SH_CORE_ASSERT(status, "Failed to initialize Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 

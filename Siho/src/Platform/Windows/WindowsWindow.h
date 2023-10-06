@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Siho/Window.h"
-
 #include <GLFW/glfw3.h>
 
 namespace Siho {

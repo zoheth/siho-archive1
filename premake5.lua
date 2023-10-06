@@ -13,8 +13,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder
 IncludeDir = {}
 IncludeDir["GLFW"] = "Siho/vendor/GLFW/include"
+IncludeDir["Glad"] = "Siho/vendor/Glad/include"
+IncludeDir["ImGui"] = "Siho/vendor/imgui"
 
 include "Siho/vendor/GLFW"
+include "Siho/vendor/Glad"
+include "Siho/vendor/imgui"
 
 project "Siho"
 	location "Siho"
@@ -37,12 +41,16 @@ project "Siho"
 	{
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/src",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -54,7 +62,8 @@ project "Siho"
 		defines
 		{
 			"SH_PLATFORM_WINDOWS",
-			"SH_BUILD_DLL"
+			"SH_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands

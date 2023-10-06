@@ -4,6 +4,9 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
@@ -13,8 +16,14 @@
     <Filter Include="Siho\Events">
       <UniqueIdentifier>{5CF45C5F-C8A9-D554-519E-CF2BBD52CC58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Siho\ImGui">
+      <UniqueIdentifier>{A28E6C1A-8E46-AE67-F74D-87C3E3244958}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -40,6 +49,9 @@
     <ClInclude Include="src\Siho\Events\MouseEvent.h">
       <Filter>Siho\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\ImGui\ImguiLayer.h">
+      <Filter>Siho\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Layer.h">
       <Filter>Siho</Filter>
     </ClInclude>
@@ -55,11 +67,17 @@
     <ClInclude Include="src\shpch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Application.cpp">
       <Filter>Siho</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp">
+      <Filter>Siho\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Layer.cpp">
       <Filter>Siho</Filter>

@@ -4,3 +4,7 @@
 [submodule "Siho/vendor/GLFW"]
 	path = Siho/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "Siho/vendor/imgui"]
+	path = Siho/vendor/imgui
+	url = https://github.com/ZOHETH/imgui
+	branch = docking
