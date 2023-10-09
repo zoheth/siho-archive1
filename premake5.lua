@@ -16,6 +16,8 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Siho/vendor/GLFW/include"
 IncludeDir["Glad"] = "Siho/vendor/Glad/include"
 IncludeDir["ImGui"] = "Siho/vendor/imgui"
+IncludeDir["glm"] = "Siho/vendor/glm"
+
 
 include "Siho/vendor/GLFW"
 include "Siho/vendor/Glad"
@@ -37,6 +39,8 @@ project "Siho"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -46,6 +50,7 @@ project "Siho"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -105,7 +110,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Siho/vendor/spdlog/include",
-		"Siho/src"
+		"Siho/src",
+		"Siho/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
