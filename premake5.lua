@@ -17,9 +17,9 @@ IncludeDir["GLFW"] = "Siho/vendor/GLFW/include"
 IncludeDir["Glad"] = "Siho/vendor/Glad/include"
 IncludeDir["ImGui"] = "Siho/vendor/imgui"
 
-include "Hazel/vendor/GLFW"
-include "Hazel/vendor/Glad"
-include "Hazel/vendor/imgui"
+include "Siho/vendor/GLFW"
+include "Siho/vendor/Glad"
+include "Siho/vendor/imgui"
 
 project "Siho"
 	location "Siho"
