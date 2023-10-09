@@ -163,6 +163,7 @@
     <ClInclude Include="src\Siho\Events\KeyEvent.h" />
     <ClInclude Include="src\Siho\Events\MouseEvent.h" />
     <ClInclude Include="src\Siho\ImGui\ImguiLayer.h" />
+    <ClInclude Include="src\Siho\Input.h" />
     <ClInclude Include="src\Siho\Layer.h" />
     <ClInclude Include="src\Siho\LayerStack.h" />
     <ClInclude Include="src\Siho\Log.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Siho\Application.cpp" />
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Siho\Input.cpp" />
     <ClCompile Include="src\Siho\Layer.cpp" />
     <ClCompile Include="src\Siho\LayerStack.cpp" />
     <ClCompile Include="src\Siho\Log.cpp" />

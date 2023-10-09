@@ -65,6 +65,7 @@
       <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
+    <ClInclude Include="src\Siho\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
@@ -89,5 +90,6 @@
       <Filter>Siho</Filter>
     </ClCompile>
     <ClCompile Include="src\shpch.cpp" />
+    <ClCompile Include="src\Siho\Input.cpp" />
   </ItemGroup>
 </Project>

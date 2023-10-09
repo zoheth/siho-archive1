@@ -1,5 +1,6 @@
 workspace "Siho"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -16,9 +17,9 @@ IncludeDir["GLFW"] = "Siho/vendor/GLFW/include"
 IncludeDir["Glad"] = "Siho/vendor/Glad/include"
 IncludeDir["ImGui"] = "Siho/vendor/imgui"
 
-include "Siho/vendor/GLFW"
-include "Siho/vendor/Glad"
-include "Siho/vendor/imgui"
+include "Hazel/vendor/GLFW"
+include "Hazel/vendor/Glad"
+include "Hazel/vendor/imgui"
 
 project "Siho"
 	location "Siho"
@@ -68,7 +69,7 @@ project "Siho"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"

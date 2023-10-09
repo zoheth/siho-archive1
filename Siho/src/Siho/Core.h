@@ -10,6 +10,11 @@
 	#error Siho only support Windows!
 #endif
 
+
+#ifdef SH_DEBUG
+	#define SH_ENABLE_ASSERTS
+#endif
+
 #ifdef SH_ENABLE_ASSERTS
 	#define SH_ASSERT(x, ...) { if(!(x)) { SH_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define SH_CORE_ASSERT(x, ...) { if(!(x)) { SH_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
