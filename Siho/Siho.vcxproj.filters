@@ -52,6 +52,9 @@
     <ClInclude Include="src\Siho\ImGui\ImguiLayer.h">
       <Filter>Siho\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Input.h">
+      <Filter>Siho</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Layer.h">
       <Filter>Siho</Filter>
     </ClInclude>
@@ -65,7 +68,9 @@
       <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
-    <ClInclude Include="src\Siho\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Siho\KeyCodes.h" />
+    <ClInclude Include="src\Siho\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
@@ -80,6 +85,9 @@
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp">
       <Filter>Siho\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Siho\Input.cpp">
+      <Filter>Siho</Filter>
+    </ClCompile>
     <ClCompile Include="src\Siho\Layer.cpp">
       <Filter>Siho</Filter>
     </ClCompile>
@@ -90,6 +98,6 @@
       <Filter>Siho</Filter>
     </ClCompile>
     <ClCompile Include="src\shpch.cpp" />
-    <ClCompile Include="src\Siho\Input.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

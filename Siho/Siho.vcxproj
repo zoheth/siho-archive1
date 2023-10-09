@@ -94,7 +94,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\Siho\Siho.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Siho\Siho.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Siho\Siho.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Siho\Siho.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Siho\Siho.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Siho\Siho.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Siho\Siho.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -121,7 +121,7 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\Siho\Siho.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Siho\Siho.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Siho\Siho.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Siho\Siho.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\Siho\Siho.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Siho\Siho.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Siho\Siho.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -148,11 +148,12 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\Siho\Siho.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Siho\Siho.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Siho\Siho.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Siho\Siho.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Siho\Siho.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Siho\Siho.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Siho\Siho.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Siho.h" />
     <ClInclude Include="src\Siho\Application.h" />
@@ -164,14 +165,17 @@
     <ClInclude Include="src\Siho\Events\MouseEvent.h" />
     <ClInclude Include="src\Siho\ImGui\ImguiLayer.h" />
     <ClInclude Include="src\Siho\Input.h" />
+    <ClInclude Include="src\Siho\KeyCodes.h" />
     <ClInclude Include="src\Siho\Layer.h" />
     <ClInclude Include="src\Siho\LayerStack.h" />
     <ClInclude Include="src\Siho\Log.h" />
+    <ClInclude Include="src\Siho\MouseButtonCodes.h" />
     <ClInclude Include="src\Siho\Window.h" />
     <ClInclude Include="src\shpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Siho\Application.cpp" />
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp" />

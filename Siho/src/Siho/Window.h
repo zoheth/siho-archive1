@@ -14,8 +14,8 @@ namespace Siho {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Siho Engine",
-			unsigned int width = 2560,
-			unsigned int height = 1440)
+			unsigned int width = 1280,
+			unsigned int height = 720)
 			: Title(title), Width(width), Height(height)
 		{
 		}
@@ -37,6 +37,8 @@ namespace Siho {
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
+
+		virtual void* GetNativeWindow() const = 0;
 
 		// Every platform has its own implementation
 		static Window* Create(const WindowProps& props = WindowProps());

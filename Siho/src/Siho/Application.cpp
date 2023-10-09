@@ -5,6 +5,8 @@
 
 #include <Glad/glad.h>
 
+#include "Input.h"
+
 namespace Siho {
 
 	Application* Application::s_Instance = nullptr;
