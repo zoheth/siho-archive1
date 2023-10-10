@@ -1,5 +1,7 @@
 #include <Siho.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Siho::Layer
 {
 public:
@@ -13,6 +15,13 @@ public:
 		SH_INFO("ExampleLayer::Update");
 		if(Siho::Input::IsKeyPressed(SH_KEY_TAB))
 			SH_TRACE("Tab key is pressed (poll)!");
+	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Siho::Event& event) override
@@ -34,7 +43,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new Siho::ImguiLayer());
 	}
 	~Sandbox(){}
 };

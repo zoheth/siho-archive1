@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef SH_PLATFORM_WINDOWS
+#if HZ_DYNAMIC_LINK
 	#ifdef SH_BUILD_DLL
 		#define SIHO_API __declspec(dllexport)
 	#else
 		#define SIHO_API __declspec(dllimport)
 	#endif
+#else
+	#define SIHO_API
+#endif
 #else
 	#error Siho only support Windows!
 #endif

@@ -6,6 +6,8 @@
 #include "Siho/Events/Event.h"
 #include "Siho/Events/ApplicationEvent.h"
 
+#include "Siho/ImGui/ImGuiLayer.h"
+
 namespace Siho {
 
 	class SIHO_API Application
@@ -27,6 +29,7 @@ namespace Siho {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
