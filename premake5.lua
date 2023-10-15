@@ -11,12 +11,22 @@ workspace "Siho"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+VULKAN_SDK = os.getenv("VULKAN_SDK")
+
+
+LibraryDir = {}
+LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
+
+Library = {}
+Library["Vulkan"] = "%{LibraryDir.VulkanSDK}/vulkan-1.lib"
+
 -- Include directories relative to root folder
 IncludeDir = {}
 IncludeDir["GLFW"] = "Siho/vendor/GLFW/include"
 IncludeDir["Glad"] = "Siho/vendor/Glad/include"
 IncludeDir["ImGui"] = "Siho/vendor/imgui"
 IncludeDir["glm"] = "Siho/vendor/glm"
+IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
 
 
 include "Siho/vendor/GLFW"
@@ -56,7 +66,9 @@ project "Siho"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+
+		"%{IncludeDir.VulkanSDK}",
 	}
 
 	links
@@ -64,7 +76,8 @@ project "Siho"
 		"GLFW",
 		"Glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
+		"%{Library.Vulkan}"
 	}
 
 	filter "system:windows"

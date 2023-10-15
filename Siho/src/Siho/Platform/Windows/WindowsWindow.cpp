@@ -5,7 +5,7 @@
 #include "Siho/Events/KeyEvent.h"
 #include "Siho/Events/MouseEvent.h"
 
-#include <Glad/glad.h>
+#include "Siho/Platform/Vulkan/VulkanContext.h"
 
 namespace Siho {
 
@@ -49,11 +49,14 @@ namespace Siho {
 			s_GLFWInitialized = true;
 		}
 
+		// Set GLFW to not create an OpenGL context
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		// Create a windowed mode window and its OpenGL context
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		SH_CORE_ASSERT(status, "Failed to initialize Glad!");
+		
+		m_Context = new VulkanContext(m_Window);
+		m_Context->Create();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -149,7 +152,7 @@ namespace Siho {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

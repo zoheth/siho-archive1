@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Siho/Window.h"
+#include "Siho/Renderer/RendererContext.h"
+
 #include <GLFW/glfw3.h>
 
 namespace Siho {
@@ -27,6 +29,8 @@ namespace Siho {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		RendererContext* m_Context;
+
 		struct WindowData
 		{
 			std::string Title;

@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Siho">
       <UniqueIdentifier>{785F8C7C-6496-8D0D-0D83-7310F998090F}</UniqueIdentifier>
     </Filter>
@@ -16,14 +10,20 @@
     <Filter Include="Siho\ImGui">
       <UniqueIdentifier>{A28E6C1A-8E46-AE67-F74D-87C3E3244958}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Siho\Platform">
+      <UniqueIdentifier>{CC8289C6-3843-05FD-017E-4E7A6DFD49D9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Siho\Platform\Vulkan">
+      <UniqueIdentifier>{CCF20798-B881-9161-61A0-A55C4D0EA207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Siho\Platform\Windows">
+      <UniqueIdentifier>{063923CA-72A5-DEC4-3B99-7622A7C4002D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Siho\Renderer">
+      <UniqueIdentifier>{1E8A66A1-8A4A-E2D7-5385-2B55BF0427B4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Siho.h" />
     <ClInclude Include="src\Siho\Application.h">
       <Filter>Siho</Filter>
@@ -67,18 +67,37 @@
     <ClInclude Include="src\Siho\MouseButtonCodes.h">
       <Filter>Siho</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\Vulkan.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanAllocator.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanContext.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanDevice.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanSwapChain.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Windows\WindowsInput.h">
+      <Filter>Siho\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Windows\WindowsWindow.h">
+      <Filter>Siho\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Renderer\RendererContext.h">
+      <Filter>Siho\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Window.h">
       <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
+    <ClInclude Include="src\Siho\Core\Ref.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>Platform\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="src\Siho\Application.cpp">
       <Filter>Siho</Filter>
     </ClCompile>
@@ -99,6 +118,24 @@
     </ClCompile>
     <ClCompile Include="src\Siho\Log.cpp">
       <Filter>Siho</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanAllocator.cpp">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanContext.cpp">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanDevice.cpp">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanSwapChain.cpp">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Windows\WindowsInput.cpp">
+      <Filter>Siho\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Siho\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\shpch.cpp" />
   </ItemGroup>
