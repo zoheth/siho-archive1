@@ -96,6 +96,7 @@
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
     <ClInclude Include="src\Siho\Core\Ref.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Application.cpp">
@@ -138,5 +139,7 @@
       <Filter>Siho\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\shpch.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.cpp" />
+    <ClCompile Include="src\Siho\Renderer\RendererContext.cpp" />
   </ItemGroup>
 </Project>

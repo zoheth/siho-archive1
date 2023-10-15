@@ -249,6 +249,8 @@ namespace Siho {
 		if (m_PhysicalDevice->IsExtensionSupported(VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME))
 			deviceExtensions.push_back(VK_NV_DEVICE_DIAGNOSTIC_CHECKPOINTS_EXTENSION_NAME);
 
+		deviceExtensions.push_back(VK_KHR_MAINTENANCE1_EXTENSION_NAME);
+
 		VkDeviceCreateInfo deviceCreateInfo = {};
 		deviceCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 		deviceCreateInfo.queueCreateInfoCount = static_cast<uint32_t>(m_PhysicalDevice->m_QueueCreateInfos.size());
@@ -265,7 +267,7 @@ namespace Siho {
 			m_EnableDebugMarkers = true;
 		}
 
-		if (deviceExtensions.size() > 0)
+		if (!deviceExtensions.empty())
 		{
 			deviceCreateInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
 			deviceCreateInfo.ppEnabledExtensionNames = deviceExtensions.data();
@@ -298,4 +300,74 @@ namespace Siho {
 		vkDeviceWaitIdle(m_Handle);
 		vkDestroyDevice(m_Handle, nullptr);
 	}
+	VkCommandBuffer VulkanDevice::GetCommandBuffer(bool begin, bool compute)
+	{
+		VkCommandBuffer cmdBuffer;
+
+		VkCommandBufferAllocateInfo cmdBufAllocateInfo = {};
+		cmdBufAllocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+		cmdBufAllocateInfo.commandPool = compute ? m_ComputeCommandPool : m_CommandPool;
+		cmdBufAllocateInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+		cmdBufAllocateInfo.commandBufferCount = 1;
+
+		VK_CHECK_RESULT(vkAllocateCommandBuffers(m_Handle, &cmdBufAllocateInfo, &cmdBuffer));
+
+		// If requested, also start the new command buffer
+		if (begin)
+		{
+			VkCommandBufferBeginInfo cmdBufferBeginInfo{};
+			cmdBufferBeginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+			VK_CHECK_RESULT(vkBeginCommandBuffer(cmdBuffer, &cmdBufferBeginInfo));
+		}
+
+		return cmdBuffer;
+	}
+	void VulkanDevice::FlushCommandBuffer(VkCommandBuffer commandBuffer)
+	{
+		FlushCommandBuffer(commandBuffer, m_Queue);
+	}
+
+	void VulkanDevice::FlushCommandBuffer(VkCommandBuffer commandBuffer, VkQueue queue)
+	{
+		const uint64_t DEFAULT_FENCE_TIMEOUT = 100000000000;
+
+		SH_CORE_ASSERT(commandBuffer != VK_NULL_HANDLE);
+
+		VK_CHECK_RESULT(vkEndCommandBuffer(commandBuffer));
+
+		VkSubmitInfo submitInfo = {};
+		submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
+		submitInfo.commandBufferCount = 1;
+		submitInfo.pCommandBuffers = &commandBuffer;
+
+		// Create fence to ensure that the command buffer has finished executing
+		VkFenceCreateInfo fenceCreateInfo = {};
+		fenceCreateInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+		fenceCreateInfo.flags = 0;
+		VkFence fence;
+		VK_CHECK_RESULT(vkCreateFence(m_Handle, &fenceCreateInfo, nullptr, &fence));
+
+		// Submit to the queue
+		VK_CHECK_RESULT(vkQueueSubmit(queue, 1, &submitInfo, fence));
+		// Wait for the fence to signal that command buffer has finished executing
+		VK_CHECK_RESULT(vkWaitForFences(m_Handle, 1, &fence, VK_TRUE, DEFAULT_FENCE_TIMEOUT));
+
+		vkDestroyFence(m_Handle, fence, nullptr);
+		vkFreeCommandBuffers(m_Handle, m_CommandPool, 1, &commandBuffer);
+	}
+
+	VkCommandBuffer VulkanDevice::CreateSecondaryCommandBuffer()
+	{
+		VkCommandBuffer cmdBuffer;
+
+		VkCommandBufferAllocateInfo cmdBufAllocateInfo = {};
+		cmdBufAllocateInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+		cmdBufAllocateInfo.commandPool = m_CommandPool;
+		cmdBufAllocateInfo.level = VK_COMMAND_BUFFER_LEVEL_SECONDARY;
+		cmdBufAllocateInfo.commandBufferCount = 1;
+
+		VK_CHECK_RESULT(vkAllocateCommandBuffers(m_Handle, &cmdBufAllocateInfo, &cmdBuffer));
+		return cmdBuffer;
+	}
+
 }

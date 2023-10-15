@@ -17,7 +17,32 @@ namespace Siho {
 
 		void OnResize(uint32_t width, uint32_t height);
 
+		void BeginFrame();
 		void Present();
+
+		uint32_t GetImageCount() const { return m_ImageCount; }
+
+		uint32_t GetWidth() const { return m_Width; }
+		uint32_t GetHeight() const { return m_Height; }
+
+		VkRenderPass GetRenderPass() { return m_RenderPass; }
+
+		VkFramebuffer GetCurrentFramebuffer() { return GetFramebuffer(m_CurrentBufferIndex); }
+		VkCommandBuffer GetCurrentDrawCommandBuffer() { return GetDrawCommandBuffer(m_CurrentBufferIndex); }
+
+		VkFormat GetColorFormat() { return m_ColorFormat; }
+
+		uint32_t GetCurrentBufferIndex() const { return m_CurrentBufferIndex; }
+		VkFramebuffer GetFramebuffer(uint32_t index)
+		{
+			SH_CORE_ASSERT(index < m_ImageCount);
+			return m_Framebuffers[index];
+		}
+		VkCommandBuffer GetDrawCommandBuffer(uint32_t index)
+		{
+			SH_CORE_ASSERT(index < m_ImageCount);
+			return m_DrawCommandBuffers[index];
+		}
 
 		void Cleanup();
 	private:

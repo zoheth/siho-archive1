@@ -163,6 +163,7 @@
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanAllocator.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanContext.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanDevice.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanSwapChain.h" />
     <ClInclude Include="src\Siho\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Siho\Platform\Windows\WindowsWindow.h" />
@@ -181,12 +182,14 @@
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanAllocator.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanContext.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanDevice.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanSwapChain.cpp" />
     <ClCompile Include="src\Siho\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Siho\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\shpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Siho\Renderer\RendererContext.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

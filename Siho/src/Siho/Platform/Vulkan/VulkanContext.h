@@ -20,6 +20,13 @@ namespace Siho {
 		virtual void Create() override;
 		virtual void SwapBuffers() override;
 
+		virtual void OnResize(uint32_t width, uint32_t height) override;
+
+		virtual void BeginFrame() override;
+
+		Ref<VulkanDevice> GetDevice() { return m_Device; }
+		VulkanSwapChain& GetSwapChain() { return m_SwapChain; }
+
 		static VkInstance GetInstance() { return s_VulkanInstance; }
 
 		// static Ref<VulkanContext> Get() { return Ref<VulkanContext>(Renderer::GetContext()); }

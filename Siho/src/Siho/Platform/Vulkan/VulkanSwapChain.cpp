@@ -454,6 +454,12 @@ namespace Siho {
 		vkDeviceWaitIdle(device);
 	}
 
+	void VulkanSwapChain::BeginFrame()
+	{
+		VK_CHECK_RESULT(vkWaitForFences(m_Device->GetHandle(), 1, &m_WaitFences[m_CurrentBufferIndex], VK_TRUE, UINT64_MAX));
+		VK_CHECK_RESULT(AcquireNextImage(m_Semaphores.presentComplete, &m_CurrentBufferIndex));
+	}
+
 	void VulkanSwapChain::Present()
 	{
 		constexpr uint64_t DEFAULT_FENCE_TIMEOUT = 100000000000;
@@ -518,6 +524,13 @@ namespace Siho {
 
 		m_Surface = VK_NULL_HANDLE;
 		m_SwapChain = VK_NULL_HANDLE;
+	}
+
+	VkResult VulkanSwapChain::AcquireNextImage(VkSemaphore presentCompleteSemaphore, uint32_t* imageIndex)
+	{
+		// By setting timeout to UINT64_MAX we will always wait until the next image has been acquired or an actual error is thrown
+		// With that we don't have to handle VK_NOT_READY
+		return fpAcquireNextImageKHR(m_Device->GetHandle(), m_SwapChain, UINT64_MAX, presentCompleteSemaphore, (VkFence)nullptr, imageIndex);
 	}
 
 	VkResult VulkanSwapChain::QueuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore)

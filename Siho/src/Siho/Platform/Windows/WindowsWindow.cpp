@@ -54,8 +54,9 @@ namespace Siho {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		
-		m_Context = new VulkanContext(m_Window);
-		m_Context->Create();
+		// Create Renderer Context
+		m_RendererContext = RendererContext::Create(m_Window);
+		m_RendererContext->Create();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
@@ -152,7 +153,7 @@ namespace Siho {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		m_Context->SwapBuffers();
+		m_RendererContext->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

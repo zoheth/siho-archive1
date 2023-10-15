@@ -3,7 +3,9 @@
 
 #include "Siho/Events/ApplicationEvent.h"
 
-#include <Glad/glad.h>
+#include "Siho/Renderer/RendererContext.h"
+#include "Platform/Vulkan/VulkanContext.h"
+#include "Platform/Vulkan/VulkanSwapChain.h"
 
 #include "Input.h"
 
@@ -20,7 +22,7 @@ namespace Siho {
 		m_Window->SetEventCallback([this](Event& e) { this->OnEvent(e); });
 		//m_Window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 
-		m_ImGuiLayer = new ImGuiLayer();
+		m_ImGuiLayer = ImGuiLayer::Create();
 		PushOverlay(m_ImGuiLayer);
 	}
 
@@ -43,8 +45,15 @@ namespace Siho {
 	{
 		while (m_Running)
 		{
-			glClearColor(1, 0, 1, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			Ref<VulkanContext> context = m_Window->GetRenderContext();
+			VulkanSwapChain& swapChain = context->GetSwapChain();
+
+			VkCommandBufferBeginInfo cmdBufInfo = {};
+			cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+			cmdBufInfo.pNext = nullptr;
+
+			VkCommandBuffer drawCommandBuffer = swapChain.GetCurrentDrawCommandBuffer();
+			VK_CHECK_RESULT(vkBeginCommandBuffer(drawCommandBuffer, &cmdBufInfo));
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
@@ -53,6 +62,8 @@ namespace Siho {
 			for (Layer* layer : m_LayerStack)
 				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
+
+			VK_CHECK_RESULT(vkEndCommandBuffer(drawCommandBuffer));
 
 			m_Window->OnUpdate();
 		}

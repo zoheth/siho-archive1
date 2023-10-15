@@ -4,8 +4,10 @@
 
 #include "Siho/Core.h"
 #include "Siho/Events/Event.h"
+#include "Siho/Renderer/RendererContext.h"
 
 namespace Siho {
+	class RendererContext;
 
 	struct WindowProps
 	{
@@ -39,6 +41,8 @@ namespace Siho {
 		virtual bool IsVSync() const = 0;
 
 		virtual void* GetNativeWindow() const = 0;
+
+		virtual Ref<RendererContext> GetRenderContext() = 0;
 
 		// Every platform has its own implementation
 		static Window* Create(const WindowProps& props = WindowProps());

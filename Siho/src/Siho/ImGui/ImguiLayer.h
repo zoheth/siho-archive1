@@ -11,15 +11,10 @@ namespace Siho {
 	class SIHO_API ImGuiLayer : public Layer
 	{
 	public:
-		ImGuiLayer();
-		~ImGuiLayer();
+		virtual void Begin() = 0;
+		virtual void End() = 0;
 
-		virtual void OnAttach() override;
-		virtual void OnDetach() override;
-		virtual void OnImGuiRender() override;
-		
-		void Begin();
-		void End();
+		static ImGuiLayer* Create();
 	private:
 		float m_Time = 0.0f;
 	};

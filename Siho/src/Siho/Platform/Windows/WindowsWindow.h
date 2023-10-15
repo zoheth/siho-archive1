@@ -24,12 +24,14 @@ namespace Siho {
 		bool IsVSync() const override;
 
 		inline virtual void* GetNativeWindow() const { return m_Window; }
+
+		virtual Ref<RendererContext> GetRenderContext() override { return m_RendererContext; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
-		RendererContext* m_Context;
+		Ref<RendererContext> m_RendererContext;
 
 		struct WindowData
 		{
