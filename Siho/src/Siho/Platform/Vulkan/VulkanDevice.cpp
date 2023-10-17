@@ -347,8 +347,14 @@ namespace Siho {
 		VkFence fence;
 		VK_CHECK_RESULT(vkCreateFence(m_Handle, &fenceCreateInfo, nullptr, &fence));
 
-		// Submit to the queue
-		VK_CHECK_RESULT(vkQueueSubmit(queue, 1, &submitInfo, fence));
+		{
+			static std::mutex submissionLock;
+			std::scoped_lock<std::mutex> lock(submissionLock);
+
+			// Submit to the queue
+			VK_CHECK_RESULT(vkQueueSubmit(queue, 1, &submitInfo, fence));
+		}
+
 		// Wait for the fence to signal that command buffer has finished executing
 		VK_CHECK_RESULT(vkWaitForFences(m_Handle, 1, &fence, VK_TRUE, DEFAULT_FENCE_TIMEOUT));
 

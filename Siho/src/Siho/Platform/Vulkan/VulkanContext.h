@@ -22,6 +22,7 @@ namespace Siho {
 
 		virtual void OnResize(uint32_t width, uint32_t height) override;
 
+		void Wait();
 		virtual void BeginFrame() override;
 
 		Ref<VulkanDevice> GetDevice() { return m_Device; }

@@ -4,6 +4,9 @@
     <Filter Include="Siho">
       <UniqueIdentifier>{785F8C7C-6496-8D0D-0D83-7310F998090F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Siho\Core">
+      <UniqueIdentifier>{D0EE83E9-3C59-3860-8597-E905F14016B5}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Siho\Events">
       <UniqueIdentifier>{5CF45C5F-C8A9-D554-519E-CF2BBD52CC58}</UniqueIdentifier>
     </Filter>
@@ -30,6 +33,9 @@
     </ClInclude>
     <ClInclude Include="src\Siho\Core.h">
       <Filter>Siho</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\Ref.h">
+      <Filter>Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\EntryPoint.h">
       <Filter>Siho</Filter>
@@ -79,6 +85,9 @@
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanDevice.h">
       <Filter>Siho\Platform\Vulkan</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanSwapChain.h">
       <Filter>Siho\Platform\Vulkan</Filter>
     </ClInclude>
@@ -88,6 +97,12 @@
     <ClInclude Include="src\Siho\Platform\Windows\WindowsWindow.h">
       <Filter>Siho\Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Renderer\RenderCommandQueue.h">
+      <Filter>Siho\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Renderer\Renderer.h">
+      <Filter>Siho\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Renderer\RendererContext.h">
       <Filter>Siho\Renderer</Filter>
     </ClInclude>
@@ -95,8 +110,6 @@
       <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
-    <ClInclude Include="src\Siho\Core\Ref.h" />
-    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Application.cpp">
@@ -129,6 +142,9 @@
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanDevice.cpp">
       <Filter>Siho\Platform\Vulkan</Filter>
     </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.cpp">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanSwapChain.cpp">
       <Filter>Siho\Platform\Vulkan</Filter>
     </ClCompile>
@@ -138,8 +154,15 @@
     <ClCompile Include="src\Siho\Platform\Windows\WindowsWindow.cpp">
       <Filter>Siho\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Siho\Renderer\RenderCommandQueue.cpp">
+      <Filter>Siho\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Renderer\Renderer.cpp">
+      <Filter>Siho\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Renderer\RendererContext.cpp">
+      <Filter>Siho\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\shpch.cpp" />
-    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.cpp" />
-    <ClCompile Include="src\Siho\Renderer\RendererContext.cpp" />
   </ItemGroup>
 </Project>

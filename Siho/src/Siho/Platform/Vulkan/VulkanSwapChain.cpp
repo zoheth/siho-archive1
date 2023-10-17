@@ -454,9 +454,14 @@ namespace Siho {
 		vkDeviceWaitIdle(device);
 	}
 
-	void VulkanSwapChain::BeginFrame()
+	void VulkanSwapChain::Wait()
 	{
 		VK_CHECK_RESULT(vkWaitForFences(m_Device->GetHandle(), 1, &m_WaitFences[m_CurrentBufferIndex], VK_TRUE, UINT64_MAX));
+	}
+
+	void VulkanSwapChain::BeginFrame()
+	{
+		//VK_CHECK_RESULT(vkWaitForFences(m_Device->GetHandle(), 1, &m_WaitFences[m_CurrentBufferIndex], VK_TRUE, UINT64_MAX));
 		VK_CHECK_RESULT(AcquireNextImage(m_Semaphores.presentComplete, &m_CurrentBufferIndex));
 	}
 
@@ -564,7 +569,7 @@ namespace Siho {
 			frameBufferCreateInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
 			frameBufferCreateInfo.pNext = nullptr;
 			frameBufferCreateInfo.renderPass = m_RenderPass;
-			frameBufferCreateInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
+			frameBufferCreateInfo.attachmentCount = 1;
 			frameBufferCreateInfo.pAttachments = attachments.data();
 			frameBufferCreateInfo.width = m_Width;
 			frameBufferCreateInfo.height = m_Height;

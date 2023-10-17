@@ -43,16 +43,25 @@ namespace Siho {
 
 	void Application::Run()
 	{
+		bool isFirst = true;
 		while (m_Running)
 		{
+			m_Window->ProcessEvents();
+
 			Ref<VulkanContext> context = m_Window->GetRenderContext();
 			VulkanSwapChain& swapChain = context->GetSwapChain();
+
+			context->BeginFrame();
 
 			VkCommandBufferBeginInfo cmdBufInfo = {};
 			cmdBufInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
 			cmdBufInfo.pNext = nullptr;
 
+			// The assignment just copies a handle, not the entire command buffer object.
+			// Therefore, drawCommandBuffer and swapChain.GetCurrentDrawCommandBuffer() point to the same command buffer.
+			context->Wait();
 			VkCommandBuffer drawCommandBuffer = swapChain.GetCurrentDrawCommandBuffer();
+
 			VK_CHECK_RESULT(vkBeginCommandBuffer(drawCommandBuffer, &cmdBufInfo));
 
 			for (Layer* layer : m_LayerStack)
@@ -65,7 +74,9 @@ namespace Siho {
 
 			VK_CHECK_RESULT(vkEndCommandBuffer(drawCommandBuffer));
 
-			m_Window->OnUpdate();
+			// On Render thread
+			
+			context->SwapBuffers();
 		}
 	}
 	void Application::OnEvent(Event& e)

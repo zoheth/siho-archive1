@@ -31,6 +31,15 @@ namespace Siho {
 		Shutdown();
 	}
 
+	void WindowsWindow::ProcessEvents()
+	{
+		glfwPollEvents();
+
+		//ImGuiMouseCursor imgui_cursor = ImGui::GetMouseCursor();
+		//glfwSetCursor(m_Window, m_ImGuiMouseCursors[imgui_cursor] ? m_ImGuiMouseCursors[imgui_cursor] : m_ImGuiMouseCursors[ImGuiMouseCursor_Arrow]);
+		glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
+
 	void WindowsWindow::Init(const WindowProps& props)
 	{
 		m_Data.Title = props.Title;
@@ -150,15 +159,10 @@ namespace Siho {
 		glfwDestroyWindow(m_Window);
 	}
 
-	void WindowsWindow::OnUpdate()
-	{
-		glfwPollEvents();
-		m_RendererContext->SwapBuffers();
-	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
-		glfwSwapInterval(enabled ? 1 : 0);
+		// glfwSwapInterval(enabled ? 1 : 0);
 		m_Data.VSync = enabled;
 	}
 

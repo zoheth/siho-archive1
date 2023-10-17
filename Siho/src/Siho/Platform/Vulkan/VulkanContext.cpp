@@ -153,6 +153,11 @@ namespace Siho {
 		m_SwapChain.OnResize(width, height);
 	}
 
+	void VulkanContext::Wait()
+	{
+		m_SwapChain.Wait();
+	}
+
 	void VulkanContext::BeginFrame()
 	{
 		m_SwapChain.BeginFrame();

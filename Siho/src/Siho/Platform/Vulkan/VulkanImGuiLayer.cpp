@@ -8,6 +8,7 @@
 #include "backends/imgui_impl_vulkan.h"
 
 #include "Siho/Application.h"
+#include "Siho/Renderer/Renderer.h"
 #include "GLFW/glfw3.h"
 
 #include "Siho/Platform/Vulkan/VulkanContext.h"
@@ -62,7 +63,7 @@ namespace Siho {
 		Application& app = Application::Get();
 		GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
-		Ref<VulkanContext> vulkanContext = app.GetWindow().GetRenderContext();
+		Ref<VulkanContext> vulkanContext = Renderer::GetContext();
 		auto device = vulkanContext->GetDevice()->GetHandle();
 
 		VkDescriptorPool descriptorPool;
@@ -140,7 +141,7 @@ namespace Siho {
 
 	void VulkanImGuiLayer::OnDetach()
 	{
-		Ref<VulkanContext> vulkanContext = Application::Get().GetWindow().GetRenderContext();
+		Ref<VulkanContext> vulkanContext = Renderer::GetContext();
 		auto device = vulkanContext->GetDevice()->GetHandle();
 
 		auto err = vkDeviceWaitIdle(device);
@@ -161,7 +162,7 @@ namespace Siho {
 	{
 		ImGui::Render();
 
-		Ref<VulkanContext> context = Application::Get().GetWindow().GetRenderContext();
+		Ref<VulkanContext> context = Renderer::GetContext();
 		VulkanSwapChain& swapChain = context->GetSwapChain();
 		VkCommandBuffer drawCommandBuffer = swapChain.GetCurrentDrawCommandBuffer();
 
