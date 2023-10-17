@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Siho/Renderer/RendererContext.h"
+#include "Siho/Renderer/Renderer.h"
 
 #include "Vulkan.h"
 #include "VulkanDevice.h"
@@ -30,8 +30,8 @@ namespace Siho {
 
 		static VkInstance GetInstance() { return s_VulkanInstance; }
 
-		// static Ref<VulkanContext> Get() { return Ref<VulkanContext>(Renderer::GetContext()); }
-		// static Ref<VulkanDevice> GetCurrentDevice() { return Get()->GetDevice(); }
+		static Ref<VulkanContext> Get() { return Ref<VulkanContext>(Renderer::GetContext()); }
+		static Ref<VulkanDevice> GetCurrentDevice() { return Get()->GetDevice(); }
 	private:
 		GLFWwindow* m_WindowHandle;
 

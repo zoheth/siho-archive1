@@ -169,6 +169,7 @@
     <ClInclude Include="src\Siho\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Siho\Renderer\RenderCommandQueue.h" />
     <ClInclude Include="src\Siho\Renderer\Renderer.h" />
+    <ClInclude Include="src\Siho\Renderer\RendererConfig.h" />
     <ClInclude Include="src\Siho\Renderer\RendererContext.h" />
     <ClInclude Include="src\Siho\Window.h" />
     <ClInclude Include="src\shpch.h" />

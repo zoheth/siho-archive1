@@ -3,6 +3,8 @@
 #include "RendererContext.h"
 #include "RenderCommandQueue.h"
 
+#include "RendererConfig.h"
+
 #include "Siho/Application.h"
 
 namespace Siho {
@@ -40,6 +42,8 @@ namespace Siho {
 
 		static void BeginFrame();
 		static void EndFrame();
+
+		static RendererConfig& GetConfig();
 
 	private:
 		static RenderCommandQueue& GetRenderCommandQueue();

@@ -15,7 +15,7 @@
 
 namespace Siho {
 
-	static VkCommandBuffer s_ImGuiCommandBuffer;
+	static std::vector<VkCommandBuffer> s_ImGuiCommandBuffers;
 
 	static void check_vk_result(VkResult err)
 	{
@@ -135,7 +135,12 @@ namespace Siho {
 			ImGui_ImplVulkan_DestroyFontUploadObjects();
 		}
 
-		s_ImGuiCommandBuffer = vulkanContext->GetDevice()->CreateSecondaryCommandBuffer();
+		uint32_t framesInFlight = Renderer::GetConfig().FramesInFlight;
+		s_ImGuiCommandBuffers.resize(framesInFlight);
+		for (uint32_t i = 0; i < framesInFlight; i++)
+		{
+			s_ImGuiCommandBuffers[i] = vulkanContext->GetDevice()->CreateSecondaryCommandBuffer();
+		};
 
 	}
 
@@ -173,6 +178,8 @@ namespace Siho {
 		uint32_t width = swapChain.GetWidth();
 		uint32_t height = swapChain.GetHeight();
 
+		uint32_t commandBufferIndex = swapChain.GetCurrentBufferIndex();
+
 		VkRenderPassBeginInfo renderPassBeginInfo = {};
 		renderPassBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
 		renderPassBeginInfo.pNext = nullptr;
@@ -197,7 +204,7 @@ namespace Siho {
 		cmdBufInfo.flags = VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT;
 		cmdBufInfo.pInheritanceInfo = &inheritanceInfo;
 
-		VK_CHECK_RESULT(vkBeginCommandBuffer(s_ImGuiCommandBuffer, &cmdBufInfo));
+		VK_CHECK_RESULT(vkBeginCommandBuffer(s_ImGuiCommandBuffers[commandBufferIndex], &cmdBufInfo));
 
 		VkViewport viewport = {};
 		viewport.x = 0.0f;
@@ -206,22 +213,22 @@ namespace Siho {
 		viewport.width = (float)width;
 		viewport.minDepth = 0.0f;
 		viewport.maxDepth = 1.0f;
-		vkCmdSetViewport(s_ImGuiCommandBuffer, 0, 1, &viewport);
+		vkCmdSetViewport(s_ImGuiCommandBuffers[commandBufferIndex], 0, 1, &viewport);
 
 		VkRect2D scissor = {};
 		scissor.extent.width = width;
 		scissor.extent.height = height;
 		scissor.offset.x = 0;
 		scissor.offset.y = 0;
-		vkCmdSetScissor(s_ImGuiCommandBuffer, 0, 1, &scissor);
+		vkCmdSetScissor(s_ImGuiCommandBuffers[commandBufferIndex], 0, 1, &scissor);
 
 		ImDrawData* main_draw_data = ImGui::GetDrawData();
-		ImGui_ImplVulkan_RenderDrawData(main_draw_data, s_ImGuiCommandBuffer);
+		ImGui_ImplVulkan_RenderDrawData(main_draw_data, s_ImGuiCommandBuffers[commandBufferIndex]);
 
-		VK_CHECK_RESULT(vkEndCommandBuffer(s_ImGuiCommandBuffer));
+		VK_CHECK_RESULT(vkEndCommandBuffer(s_ImGuiCommandBuffers[commandBufferIndex]));
 
 		std::vector<VkCommandBuffer> commandBuffers;
-		commandBuffers.push_back(s_ImGuiCommandBuffer);
+		commandBuffers.push_back(s_ImGuiCommandBuffers[commandBufferIndex]);
 
 		vkCmdExecuteCommands(drawCommandBuffer, commandBuffers.size(), commandBuffers.data());
 

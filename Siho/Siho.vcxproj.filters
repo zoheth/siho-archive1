@@ -110,6 +110,7 @@
       <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
+    <ClInclude Include="src\Siho\Renderer\RendererConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Application.cpp">
