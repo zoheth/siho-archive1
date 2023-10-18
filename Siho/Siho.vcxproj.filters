@@ -111,6 +111,12 @@
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
     <ClInclude Include="src\Siho\Renderer\RendererConfig.h" />
+    <ClInclude Include="src\Siho\Renderer\Shader.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanShader.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanRenderer.h" />
+    <ClInclude Include="src\Siho\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Siho\Renderer\ShaderPack.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Application.cpp">
@@ -165,5 +171,10 @@
       <Filter>Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\shpch.cpp" />
+    <ClCompile Include="src\Siho\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanShader.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanRenderer.cpp" />
+    <ClCompile Include="src\Siho\Renderer\ShaderPack.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.cpp" />
   </ItemGroup>
 </Project>

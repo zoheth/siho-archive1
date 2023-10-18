@@ -28,10 +28,12 @@ IncludeDir["ImGui"] = "Siho/vendor/imgui"
 IncludeDir["glm"] = "Siho/vendor/glm"
 IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
 
+group "Dependencies"
+	include "Siho/vendor/GLFW"
+	include "Siho/vendor/Glad"
+	include "Siho/vendor/imgui"
 
-include "Siho/vendor/GLFW"
-include "Siho/vendor/Glad"
-include "Siho/vendor/imgui"
+group ""
 
 project "Siho"
 	location "Siho"

@@ -9,6 +9,8 @@
 
 namespace Siho {
 
+	class ShaderLibrary;
+
 	class Renderer
 	{
 	public:
@@ -21,6 +23,8 @@ namespace Siho {
 
 		static void Init();
 		static void Shutdown();
+
+		static Ref<ShaderLibrary> GetShaderLibrary();
 
 		template<typename FuncT>
 		static void Submit(FuncT&& func)

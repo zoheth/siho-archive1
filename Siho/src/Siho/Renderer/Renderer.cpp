@@ -6,7 +6,19 @@ namespace Siho {
 	
 	void Renderer::Init()
 	{
+		Renderer::GetShaderLibrary()->Load("Resources/Shaders/HazelPBR_Static.glsl");
+	}
 
+	struct RendererData
+	{
+		Ref<ShaderLibrary> m_ShaderLibrary;
+	};
+
+	static RendererData* s_Data = nullptr;
+
+	Ref<ShaderLibrary> Renderer::GetShaderLibrary()
+	{
+		return s_Data->m_ShaderLibrary;
 	}
 	RendererConfig& Renderer::GetConfig()
 	{
