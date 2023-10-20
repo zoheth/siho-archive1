@@ -1,3 +1,5 @@
+include "Dependencies.lua"
+
 workspace "Siho"
 	architecture "x64"
 	startproject "Sandbox"
@@ -11,22 +13,6 @@ workspace "Siho"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-VULKAN_SDK = os.getenv("VULKAN_SDK")
-
-
-LibraryDir = {}
-LibraryDir["VulkanSDK"] = "%{VULKAN_SDK}/Lib"
-
-Library = {}
-Library["Vulkan"] = "%{LibraryDir.VulkanSDK}/vulkan-1.lib"
-
--- Include directories relative to root folder
-IncludeDir = {}
-IncludeDir["GLFW"] = "Siho/vendor/GLFW/include"
-IncludeDir["Glad"] = "Siho/vendor/Glad/include"
-IncludeDir["ImGui"] = "Siho/vendor/imgui"
-IncludeDir["glm"] = "Siho/vendor/glm"
-IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
 
 group "Dependencies"
 	include "Siho/vendor/GLFW"
@@ -65,12 +51,14 @@ project "Siho"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
+
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-
 		"%{IncludeDir.VulkanSDK}",
+		"%{IncludeDir.shaderc_util}",
+		"%{IncludeDir.shaderc}",
 	}
 
 	links
@@ -79,7 +67,7 @@ project "Siho"
 		"Glad",
 		"ImGui",
 		"opengl32.lib",
-		"%{Library.Vulkan}"
+		"%{Library.Vulkan}",
 	}
 
 	filter "system:windows"
@@ -96,6 +84,14 @@ project "Siho"
 		defines "SH_DEBUG"
 		runtime "Debug"
 		symbols "on"
+		links
+		{
+			"%{Library.ShaderC_Debug}",
+			"%{Library.ShaderC_Utils_Debug}",
+			"%{Library.SPIRV_Cross_Debug}",
+			"%{Library.SPIRV_Cross_GLSL_Debug}",
+			"%{Library.SPIRV_Tools_Debug}",
+		}
 
 	filter "configurations:Release"
 		defines "SH_RELEASE"
@@ -106,6 +102,13 @@ project "Siho"
 		defines "SH_DIST"
 		runtime "Release"
 		optimize "on"
+		links
+		{
+			"%{Library.ShaderC_Release}",
+			"%{Library.ShaderC_Utils_Release}",
+			"%{Library.SPIRV_Cross_Release}",
+			"%{Library.SPIRV_Cross_GLSL_Release}",
+		}
 
 project "Sandbox"
 	location "Sandbox"

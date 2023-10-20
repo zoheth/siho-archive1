@@ -16,7 +16,10 @@ namespace Siho {
 			if (m_ShaderPack->Contains(path))
 				shader = m_ShaderPack->LoadShader(path);
 		}*/
+
+		// UNDONE 1020
 		shader = 
+
 	}
 
 }

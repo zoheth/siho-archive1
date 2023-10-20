@@ -6,6 +6,7 @@ namespace Siho {
 	
 	void Renderer::Init()
 	{
+		// UNDONE 1020
 		Renderer::GetShaderLibrary()->Load("Resources/Shaders/HazelPBR_Static.glsl");
 	}
 

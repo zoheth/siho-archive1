@@ -3,8 +3,11 @@
 VULKAN_SDK = os.getenv("VULKAN_SDK")
 
 IncludeDir = {}
+IncludeDir["GLFW"] = "%{wks.location}/Siho/vendor/GLFW/include"
+IncludeDir["Glad"] = "%{wks.location}/Siho/vendor/Glad/include"
+IncludeDir["ImGui"] = "%{wks.location}/Siho/vendor/imgui"
+IncludeDir["glm"] = "%{wks.location}/Siho/vendor/glm"
 IncludeDir["VulkanSDK"] = "%{VULKAN_SDK}/Include"
-IncludeDir["glm"] = "../vendor/glm"
 IncludeDir["shaderc_util"] = "%{wks.location}/Siho/vendor/shaderc/libshaderc_util/include"
 IncludeDir["shaderc"] = "%{wks.location}/Siho/vendor/shaderc/include"
 
