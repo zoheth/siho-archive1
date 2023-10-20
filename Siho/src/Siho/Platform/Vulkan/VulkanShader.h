@@ -17,5 +17,8 @@ namespace Siho {
 		std::filesystem::path m_AssetPath;
 		std::string m_Name;
 		bool m_DisableOptimization = false;
+
+		friend class ShaderPack;
+		friend class VulkanShaderCompiler;
 	};
 }
