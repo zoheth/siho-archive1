@@ -18,7 +18,7 @@ namespace Siho {
 		}*/
 
 		// UNDONE 1020
-		shader = 
+		shader = VulkanShaderCompiler::Compile()
 
 	}
 

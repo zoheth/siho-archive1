@@ -71,6 +71,14 @@ namespace Siho {
 			return IncludedFilePath == rhs.IncludedFilePath && HashValue == rhs.HashValue;
 		}
 	};
+
+	struct HeaderCache
+	{
+		std::string Source;
+		uint32_t SourceHash;
+		VkShaderStageFlagBits Stages;
+		bool IsGuarded;
+	};
 }
 
 namespace Siho {

@@ -49,6 +49,10 @@ namespace Siho {
 
 		static RendererConfig& GetConfig();
 
+		// Add known macro from shader
+		static const std::unordered_map<std::string, std::string>& GetGlobalShaderMacros();
+
+
 	private:
 		static RenderCommandQueue& GetRenderCommandQueue();
 	};

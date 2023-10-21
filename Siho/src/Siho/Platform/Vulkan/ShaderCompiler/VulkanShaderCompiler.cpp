@@ -2,6 +2,8 @@
 #include "VulkanShaderCompiler.h"
 
 #include "Siho/Utilities/StringUtils.h"
+#include "Siho/Renderer/Renderer.h"
+#include "Siho/Core/Hash.h"
 
 #include <shaderc/shaderc.hpp>
 #include <libshaderc_util/file_finder.h>
@@ -26,6 +28,8 @@ namespace Siho {
 
 		SH_CORE_TRACE("[Renderer] Compiling shader: {}", m_ShaderSourcePath.string());
 		m_ShaderSources = PreProcess(source);
+		const VkShaderStageFlagBits changedStages = 
+		// UNDONE
 	}
 
 	Ref<VulkanShader> VulkanShaderCompiler::Compile(const std::filesystem::path& shaderSourcePath, bool forceCompile, bool disableOptimization)
@@ -35,6 +39,9 @@ namespace Siho {
 		Ref<VulkanShader> shader = Ref<VulkanShader>::Create(path, forceCompile, disableOptimization);
 
 		Ref<VulkanShaderCompiler> compiler = Ref<VulkanShaderCompiler>::Create(shaderSourcePath, disableOptimization);
+		compiler->Reload(forceCompile);
+
+		// UNDONE
 	}
 	std::map<VkShaderStageFlagBits, std::string> VulkanShaderCompiler::PreProcess(const std::string& source)
 	{
@@ -51,7 +58,40 @@ namespace Siho {
 		fileFinder.search_path().emplace_back("Resources/Shaders/Include/GLSL/"); //Main include directory
 		fileFinder.search_path().emplace_back("Resources/Shaders/Include/Common/"); //Shared include directory
 
-		// UNDONE 1020
+		for (auto& [stage, shaderSource] : shaderSources)
+		{
+			shaderc::CompileOptions options;
+			options.AddMacroDefinition("__GLSL__");
+			options.AddMacroDefinition(std::string(ShaderUtils::VKStageToShaderMacro(stage)));
+
+			const auto& globalMacros = Renderer::GetGlobalShaderMacros();
+			for(const auto& [key, value] : globalMacros)
+				options.AddMacroDefinition(key, value);
+
+			// TODO Includer
+			
+			const auto preProcessingResult = compiler.PreprocessGlsl(
+				shaderSource, 
+				ShaderUtils::ShaderStageToShaderC(stage),
+				m_ShaderSourcePath.string().c_str(),
+				options);
+			if (preProcessingResult.GetCompilationStatus() != shaderc_compilation_status_success)
+			{
+				SH_CORE_ERROR("[Renderer] Failed to pre-process shader \"{}\"'s {} shader.\nError: {}", 
+					m_ShaderSourcePath.string(),
+					ShaderUtils::ShaderStageToString(stage),
+					preProcessingResult.GetErrorMessage());
+				return {};
+			}
+
+			m_StagesMetadata[stage].HashValue = Hash::GenerateFNVHash(shaderSource);
+			// m_StagesMetadata[stage].Headers = std::move(includer->GetIncludeData());
+
+			// m_AcknowledgedMacros.merge(includer->GetParsedSpecialMacros());
+
+			shaderSource = std::string(preProcessingResult.begin(), preProcessingResult.end());
+		}
+		return shaderSources;
 	}
 
 }

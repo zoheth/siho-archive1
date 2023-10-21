@@ -1,6 +1,8 @@
 #include "shpch.h"
 #include "Renderer.h"
 
+#include "Shader.h"
+
 namespace Siho {
 	static RendererConfig s_Config;
 	
@@ -13,6 +15,8 @@ namespace Siho {
 	struct RendererData
 	{
 		Ref<ShaderLibrary> m_ShaderLibrary;
+
+		std::unordered_map<std::string, std::string> GlobalShaderMacros;
 	};
 
 	static RendererData* s_Data = nullptr;
@@ -25,4 +29,10 @@ namespace Siho {
 	{
 		return s_Config;
 	}
+
+	const std::unordered_map<std::string, std::string>& Renderer::GetGlobalShaderMacros()
+	{
+		return s_Data->GlobalShaderMacros;
+	}
+
 }
