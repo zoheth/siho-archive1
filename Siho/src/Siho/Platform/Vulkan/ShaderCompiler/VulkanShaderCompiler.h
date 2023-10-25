@@ -46,11 +46,21 @@ namespace Siho {
 
 		bool Reload(bool forceCompile = false);
 
+		const std::map<VkShaderStageFlagBits, std::vector<uint32_t>>& GetSPIRVData() const { return m_SPIRVData; }
+
 		static Ref<VulkanShader> Compile(const std::filesystem::path& shaderSourcePath, bool forceCompile = false, bool disableOptimization = false);
 
 	private:
 		std::map<VkShaderStageFlagBits, std::string> PreProcess(const std::string& source);
 		std::map<VkShaderStageFlagBits, std::string> PreProcessGLSL(const std::string& source);
+
+		struct CompilationOptions
+		{
+			bool GenerateDebugInfo = false;
+			bool Optimize = true;
+		};
+
+		std::string Compile(std::vector<uint32_t>& outputBinary, const VkShaderStageFlagBits stage, CompilationOptions options);
 
 	private:
 		std::filesystem::path m_ShaderSourcePath;

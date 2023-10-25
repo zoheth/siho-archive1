@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Siho/Renderer/Shader.h"
-
 #include <filesystem>
+#include <map>
+
+#include "Siho/Renderer/Shader.h"
 
 namespace Siho {
 
@@ -14,9 +15,16 @@ namespace Siho {
 		virtual ~VulkanShader();
 
 	private:
+		void LoadAndCreateShaders(const std::map<VkShaderStageFlagBits, std::vector<uint32_t>>& shaderData);
+
+	private:
+		std::vector<VkPipelineShaderStageCreateInfo> m_PipelineShaderStageCreateInfos;
+
 		std::filesystem::path m_AssetPath;
 		std::string m_Name;
 		bool m_DisableOptimization = false;
+
+		std::map<VkShaderStageFlagBits, std::vector<uint32_t>> m_ShaderData;
 
 		friend class ShaderPack;
 		friend class VulkanShaderCompiler;

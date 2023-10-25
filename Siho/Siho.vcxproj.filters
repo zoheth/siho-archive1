@@ -151,6 +151,7 @@
     <ClInclude Include="src\shpch.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.h" />
     <ClInclude Include="src\Siho\Core\Hash.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Application.cpp">
@@ -225,5 +226,6 @@
     <ClCompile Include="src\shpch.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.cpp" />
     <ClCompile Include="src\Siho\Core\Hash.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.cpp" />
   </ItemGroup>
 </Project>

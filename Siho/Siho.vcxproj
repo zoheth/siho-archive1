@@ -162,6 +162,7 @@
     <ClInclude Include="src\Siho\MouseButtonCodes.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\ShaderPreprocessor.h" />
+    <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\Vulkan.h" />
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanAllocator.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="src\Siho\LayerStack.cpp" />
     <ClCompile Include="src\Siho\Log.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.cpp" />
+    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanAllocator.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanContext.cpp" />

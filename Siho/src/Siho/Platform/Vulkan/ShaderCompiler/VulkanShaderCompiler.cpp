@@ -12,7 +12,7 @@ namespace Siho {
 	VulkanShaderCompiler::VulkanShaderCompiler(const std::filesystem::path& shaderSourcePath, bool disableOptimization)
 		:m_ShaderSourcePath(shaderSourcePath), m_DisableOptimization(disableOptimization)
 	{
-		
+
 	}
 
 	bool VulkanShaderCompiler::Reload(bool forceCompile)
@@ -28,8 +28,28 @@ namespace Siho {
 
 		SH_CORE_TRACE("[Renderer] Compiling shader: {}", m_ShaderSourcePath.string());
 		m_ShaderSources = PreProcess(source);
-		const VkShaderStageFlagBits changedStages = 
-		// UNDONE
+		// const VkShaderStageFlagBits changedStages = 
+		
+		for (const auto& [stage, source] : m_ShaderSources)
+		{
+			std::vector<uint32_t>& spirv = m_SPIRVData[stage];
+			// Disable optimization for compute shaders because of shaderc internal error
+			bool optimize = !m_DisableOptimization && stage != VK_SHADER_STAGE_COMPUTE_BIT;
+			std::string error = Compile(spirv, stage, { false, optimize });
+			if (!error.empty())
+			{
+				SH_CORE_ERROR(error);
+				return false;
+			}
+			spirv = m_SPIRVDebugData[stage];
+			std::string error = Compile(spirv, stage, { true, false });
+			if (!error.empty())
+			{
+				SH_CORE_ERROR(error);
+				return false;
+			}
+		}
+		return true;
 	}
 
 	Ref<VulkanShader> VulkanShaderCompiler::Compile(const std::filesystem::path& shaderSourcePath, bool forceCompile, bool disableOptimization)
@@ -41,8 +61,38 @@ namespace Siho {
 		Ref<VulkanShaderCompiler> compiler = Ref<VulkanShaderCompiler>::Create(shaderSourcePath, disableOptimization);
 		compiler->Reload(forceCompile);
 
-		// UNDONE
+		shader->LoadAndCreateShaders(compiler->GetSPIRVData());
+		// TODO Reflection
+
 	}
+
+	std::string VulkanShaderCompiler::Compile(std::vector<uint32_t>& outputBinary, const VkShaderStageFlagBits stage, CompilationOptions options)
+	{
+		const std::string& source = m_ShaderSources.at(stage); // Use at to get an exception if the stage doesn't exist
+
+		static shaderc::Compiler compiler;
+		shaderc::CompileOptions compileOptions;
+		compileOptions.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_3);
+		compileOptions.SetWarningsAsErrors();
+		if (options.GenerateDebugInfo)
+			compileOptions.SetGenerateDebugInfo();
+		if (options.Optimize && !m_DisableOptimization)
+			compileOptions.SetOptimizationLevel(shaderc_optimization_level_performance);
+
+		// Compile shader
+		const shaderc::SpvCompilationResult module = compiler.CompileGlslToSpv(source, ShaderUtils::ShaderStageToShaderC(stage), m_ShaderSourcePath.string().c_str(), compileOptions);
+
+		if (module.GetCompilationStatus() != shaderc_compilation_status_success)
+		{
+			return fmt::format("[Renderer] Failed to compile shader \"{}\"'s {} shader.\nError: {}",
+				m_ShaderSourcePath.string(),
+				ShaderUtils::ShaderStageToString(stage),
+				module.GetErrorMessage());
+		}
+		outputBinary = { module.cbegin(), module.cend() };
+		return {};
+	}
+
 	std::map<VkShaderStageFlagBits, std::string> VulkanShaderCompiler::PreProcess(const std::string& source)
 	{
 		return PreProcessGLSL(source);
@@ -65,19 +115,19 @@ namespace Siho {
 			options.AddMacroDefinition(std::string(ShaderUtils::VKStageToShaderMacro(stage)));
 
 			const auto& globalMacros = Renderer::GetGlobalShaderMacros();
-			for(const auto& [key, value] : globalMacros)
+			for (const auto& [key, value] : globalMacros)
 				options.AddMacroDefinition(key, value);
 
 			// TODO Includer
-			
+
 			const auto preProcessingResult = compiler.PreprocessGlsl(
-				shaderSource, 
+				shaderSource,
 				ShaderUtils::ShaderStageToShaderC(stage),
 				m_ShaderSourcePath.string().c_str(),
 				options);
 			if (preProcessingResult.GetCompilationStatus() != shaderc_compilation_status_success)
 			{
-				SH_CORE_ERROR("[Renderer] Failed to pre-process shader \"{}\"'s {} shader.\nError: {}", 
+				SH_CORE_ERROR("[Renderer] Failed to pre-process shader \"{}\"'s {} shader.\nError: {}",
 					m_ShaderSourcePath.string(),
 					ShaderUtils::ShaderStageToString(stage),
 					preProcessingResult.GetErrorMessage());
