@@ -1,20 +1,22 @@
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <memory>
-#include <utility>
-#include <algorithm>
-#include <functional>
-
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-
-#include "Siho/Log.h"
-
 #ifdef SH_PLATFORM_WINDOWS
-	#include <Windows.h>
+#include <Windows.h>
 #endif
+
+#include <algorithm>
+#include <array>
+#include <filesystem>
+#include <fstream>
+#include <functional>
+#include <memory>
+#include <random>
+#include <set>
+#include <string>
+#include <string_view>
+#include <unordered_map>
+#include <vector>
+
+#include "Siho/Core/Application.h"
+#include "Siho/Core/Base.h"
+#include "Siho/Core/Log.h"

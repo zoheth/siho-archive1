@@ -1,11 +1,10 @@
 #pragma once
 
-#include "Siho/Core.h"
 #include "Siho/Events/Event.h"
 
 namespace Siho {
 
-	class SIHO_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

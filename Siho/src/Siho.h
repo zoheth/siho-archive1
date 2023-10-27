@@ -1,16 +1,16 @@
 #pragma once
 
 // Use for Siho application
-#include "Siho/Application.h"
-#include "Siho/Layer.h"
-#include "Siho/Log.h"
+#include "Siho/Core/Application.h"
+#include "Siho/Core/Layer.h"
+#include "Siho/Core/Log.h"
 
-#include "Siho/Input.h"
-#include "Siho/KeyCodes.h"
-#include "Siho/MouseButtonCodes.h"
+#include "Siho/Core/Input.h"
+#include "Siho/Core/KeyCodes.h"
+#include "Siho/Core/MouseButtonCodes.h"
 
 #include "Siho/ImGui/ImguiLayer.h"
 
 // ---Entry Point-------------------------------
-#include "Siho/EntryPoint.h"
+#include "Siho/Core/EntryPoint.h"
 // ---------------------------------------------

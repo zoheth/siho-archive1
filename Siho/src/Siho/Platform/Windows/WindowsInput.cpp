@@ -1,7 +1,6 @@
 #include "shpch.h"
 #include "WindowsInput.h"
 
-#include "Siho/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Siho {

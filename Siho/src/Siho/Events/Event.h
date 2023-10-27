@@ -1,5 +1,5 @@
 #pragma once
-#include "Siho/Core.h"
+#include "Siho/Core/Base.h"
 
 #include <string>
 #include <functional>

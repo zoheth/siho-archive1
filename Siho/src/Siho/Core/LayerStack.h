@@ -1,13 +1,12 @@
 #pragma once
 
-#include "Siho/Core.h"
-#include "Layer.h"
-
 #include <vector>
+
+#include "Layer.h"
 
 namespace Siho {
 
-	class SIHO_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

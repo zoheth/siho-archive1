@@ -1,5 +1,8 @@
 #pragma once
 
+#include <memory>
+#include "Ref.h"
+
 #ifdef SH_PLATFORM_WINDOWS
 #if SH_DYNAMIC_LINK
 	#ifdef SH_BUILD_DLL

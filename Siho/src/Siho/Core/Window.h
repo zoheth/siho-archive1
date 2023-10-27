@@ -1,8 +1,6 @@
 #pragma once
 
-#include "shpch.h"
-
-#include "Siho/Core.h"
+#include "Base.h"
 #include "Siho/Events/Event.h"
 #include "Siho/Renderer/RendererContext.h"
 
