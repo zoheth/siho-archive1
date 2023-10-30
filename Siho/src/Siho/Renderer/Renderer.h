@@ -5,8 +5,6 @@
 
 #include "RendererConfig.h"
 
-#include "Siho/Application.h"
-
 namespace Siho {
 
 	class ShaderLibrary;

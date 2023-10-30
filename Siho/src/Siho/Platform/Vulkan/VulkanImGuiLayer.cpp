@@ -7,7 +7,6 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_vulkan.h"
 
-#include "Siho/Application.h"
 #include "Siho/Renderer/Renderer.h"
 #include "GLFW/glfw3.h"
 

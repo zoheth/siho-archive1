@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Siho/Layer.h"
+#include "Siho/Core/Layer.h"
 
 #include "Siho/Events/ApplicationEvent.h"
 #include "Siho/Events/KeyEvent.h"
@@ -8,7 +8,7 @@
 
 namespace Siho {
 
-	class SIHO_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		virtual void Begin() = 0;

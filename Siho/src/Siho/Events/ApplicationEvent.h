@@ -1,12 +1,11 @@
 #pragma once
-#include "Siho/Core.h"
 #include "Event.h"
 
 #include <sstream>
 
 namespace Siho {
 
-	class SIHO_API WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -29,7 +28,7 @@ namespace Siho {
 		unsigned int m_Width, m_Height;
 	};
 
-	class SIHO_API WindowCloseEvent : public Event
+	class WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -38,7 +37,7 @@ namespace Siho {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class SIHO_API AppTickEvent : public Event
+	class AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -47,7 +46,7 @@ namespace Siho {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class SIHO_API AppUpdateEvent : public Event
+	class AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -56,7 +55,7 @@ namespace Siho {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class SIHO_API AppRenderEvent : public Event
+	class AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}

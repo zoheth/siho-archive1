@@ -1,10 +1,8 @@
 #pragma once
 
-#include "Siho/Core.h"
-
 namespace Siho {
 
-	class SIHO_API Input
+	class Input
 	{
 	public:
 		// Use static functions have two advantages:
