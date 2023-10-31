@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Siho/Input.h"
+#include "Siho/Core/Input.h"
 
 namespace Siho {
 
