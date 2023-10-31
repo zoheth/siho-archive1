@@ -38,8 +38,12 @@ project "Siho"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+
+		"%{prj.name}/vendor/VulkanMemoryAllocator/**.h",
+		"%{prj.name}/vendor/VulkanMemoryAllocator/**.cpp",
 	}
 
 	defines
@@ -50,6 +54,7 @@ project "Siho"
 	includedirs
 	{
 		"%{prj.name}/src",
+		"%{prj.name}/vendor",
 		"%{prj.name}/vendor/spdlog/include",
 
 		"%{IncludeDir.GLFW}",

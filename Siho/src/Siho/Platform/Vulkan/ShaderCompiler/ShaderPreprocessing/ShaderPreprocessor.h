@@ -1,9 +1,11 @@
 #pragma once
 
 #include <filesystem>
-#include <map>
 #include <sstream>
+#include <map>
+#include <unordered_set>
 
+#include "Siho/Utilities/StringUtils.h"
 #include "Siho/Platform/Vulkan/VulkanShaderUtils.h"
 
 enum VkShaderStageFlagBits;

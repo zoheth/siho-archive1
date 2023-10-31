@@ -26,6 +26,10 @@ namespace Siho {
 
 		VkPhysicalDevice GetHandle() const { return m_Handle; }
 		const QueueFamilyIndices& GetQueueFamilyIndices() const { return m_QueueFamilyIndices; }
+		
+		const VkPhysicalDeviceProperties& GetProperties() const { return m_Properties; }
+		const VkPhysicalDeviceLimits& GetMemoryLimits() const { return m_Properties.limits; }
+		const VkPhysicalDeviceMemoryProperties& GetMemoryProperties() const { return m_MemoryProperties; }
 
 		VkFormat GetDepthFormat() const { return m_DepthFormat; }
 

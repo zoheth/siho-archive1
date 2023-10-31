@@ -1,267 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Siho">
-      <UniqueIdentifier>{785F8C7C-6496-8D0D-0D83-7310F998090F}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Core">
-      <UniqueIdentifier>{D0EE83E9-3C59-3860-8597-E905F14016B5}</UniqueIdentifier>
+    <Filter Include="src\Siho">
+      <UniqueIdentifier>{EF7E25CF-DB4B-80DA-0465-6E82F090B568}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Events">
-      <UniqueIdentifier>{5CF45C5F-C8A9-D554-519E-CF2BBD52CC58}</UniqueIdentifier>
+    <Filter Include="src\Siho\Core">
+      <UniqueIdentifier>{A7503E29-1311-BA5F-DC4B-03DD48CBFE3B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\ImGui">
-      <UniqueIdentifier>{A28E6C1A-8E46-AE67-F74D-87C3E3244958}</UniqueIdentifier>
+    <Filter Include="src\Siho\Events">
+      <UniqueIdentifier>{F3273777-5FB3-A43B-68C4-2730D4CE003C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Platform">
-      <UniqueIdentifier>{CC8289C6-3843-05FD-017E-4E7A6DFD49D9}</UniqueIdentifier>
+    <Filter Include="src\Siho\ImGui">
+      <UniqueIdentifier>{592B7351-45F9-6657-2E8D-D77D1AFA42BC}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Platform\Vulkan">
-      <UniqueIdentifier>{CCF20798-B881-9161-61A0-A55C4D0EA207}</UniqueIdentifier>
+    <Filter Include="src\Siho\Platform">
+      <UniqueIdentifier>{23F8BE3D-8F0E-BDD3-D885-48F544DB8D5B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Platform\Vulkan\ShaderCompiler">
-      <UniqueIdentifier>{2DD70160-9990-6C0A-22F0-86E48EA8227A}</UniqueIdentifier>
+    <Filter Include="src\Siho\Platform\Vulkan">
+      <UniqueIdentifier>{432047A2-2F45-9622-5890-7BB244149540}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing">
-      <UniqueIdentifier>{97E03E47-03C8-293D-0CB6-2BB9781CCDFF}</UniqueIdentifier>
+    <Filter Include="src\Siho\Platform\Vulkan\ShaderCompiler">
+      <UniqueIdentifier>{C4FFBD80-308F-7F6B-398B-6083A599BA77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Platform\Windows">
-      <UniqueIdentifier>{063923CA-72A5-DEC4-3B99-7622A7C4002D}</UniqueIdentifier>
+    <Filter Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing">
+      <UniqueIdentifier>{AECAC633-1A88-6F6A-A352-5BD20F0FE2BE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Renderer">
-      <UniqueIdentifier>{1E8A66A1-8A4A-E2D7-5385-2B55BF0427B4}</UniqueIdentifier>
+    <Filter Include="src\Siho\Platform\Windows">
+      <UniqueIdentifier>{5D15481C-C9D7-7BA6-1288-0A337E895484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Siho\Utilities">
-      <UniqueIdentifier>{E3399895-CF07-8C9B-B89B-FCC1A4086800}</UniqueIdentifier>
+    <Filter Include="src\Siho\Renderer">
+      <UniqueIdentifier>{75FF9B18-E115-9AAE-2A8D-25D096E26A36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Siho\Utilities">
+      <UniqueIdentifier>{1A5A7CF3-063E-3D49-6F9E-379C5BA127CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\VulkanMemoryAllocator">
+      <UniqueIdentifier>{CD0FE8DE-B9CA-D78A-6282-50D54E1C221B}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Siho.h" />
+    <ClInclude Include="src\Siho.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Core\Application.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Base.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Buffer.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\EntryPoint.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Hash.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Input.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\KeyCodes.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Layer.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\LayerStack.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Log.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Memory.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\MouseButtonCodes.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Ref.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Window.h">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Events\ApplicationEvent.h">
-      <Filter>Siho\Events</Filter>
+      <Filter>src\Siho\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Events\Event.h">
-      <Filter>Siho\Events</Filter>
+      <Filter>src\Siho\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Events\KeyEvent.h">
-      <Filter>Siho\Events</Filter>
+      <Filter>src\Siho\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Events\MouseEvent.h">
-      <Filter>Siho\Events</Filter>
+      <Filter>src\Siho\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\ImGui\ImguiLayer.h">
-      <Filter>Siho\ImGui</Filter>
+      <Filter>src\Siho\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.h">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\ShaderPreprocessor.h">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.h">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler</Filter>
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.h">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler</Filter>
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\Vulkan.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanAllocator.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanContext.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanDevice.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanPipeline.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanRenderer.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanShader.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanShaderUtils.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanSwapChain.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanVertexBuffer.h">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Windows\WindowsInput.h">
-      <Filter>Siho\Platform\Windows</Filter>
+      <Filter>src\Siho\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Windows\WindowsWindow.h">
-      <Filter>Siho\Platform\Windows</Filter>
+      <Filter>src\Siho\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\Pipeline.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\RenderCommandQueue.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\Renderer.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\RendererAPI.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\RendererConfig.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\RendererContext.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\Shader.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\ShaderPack.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Renderer\VertexBuffer.h">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Utilities\StringUtils.h">
-      <Filter>Siho\Utilities</Filter>
+      <Filter>src\Siho\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="src\shpch.h" />
+    <ClInclude Include="src\shpch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\VulkanMemoryAllocator\vk_mem_alloc.h">
+      <Filter>vendor\VulkanMemoryAllocator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Core\Application.cpp">
-      <Filter>Siho\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Core\Hash.cpp">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Core\Layer.cpp">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Core\LayerStack.cpp">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Core\Log.cpp">
-      <Filter>Siho\Core</Filter>
+      <Filter>src\Siho\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\ImGui\ImGuiBuild.cpp">
-      <Filter>Siho\ImGui</Filter>
+      <Filter>src\Siho\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp">
-      <Filter>Siho\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.cpp">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
+      <Filter>src\Siho\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.cpp">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.cpp">
-      <Filter>Siho\Platform\Vulkan\ShaderCompiler</Filter>
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanAllocator.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanContext.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanDevice.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanImGuiLayer.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanPipeline.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanRenderer.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanShader.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanSwapChain.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanVertexBuffer.cpp">
-      <Filter>Siho\Platform\Vulkan</Filter>
+      <Filter>src\Siho\Platform\Vulkan</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Windows\WindowsInput.cpp">
-      <Filter>Siho\Platform\Windows</Filter>
+      <Filter>src\Siho\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Siho\Platform\Windows</Filter>
+      <Filter>src\Siho\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\RenderCommandQueue.cpp">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\Renderer.cpp">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\RendererContext.cpp">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\Shader.cpp">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\ShaderPack.cpp">
-      <Filter>Siho\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Renderer\VertexBuffer.cpp">
-      <Filter>Siho\Renderer</Filter>
+      <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Utilities\StringUtils.cpp">
-      <Filter>Siho\Utilities</Filter>
+      <Filter>src\Siho\Utilities</Filter>
     </ClCompile>
-    <ClCompile Include="src\shpch.cpp" />
+    <ClCompile Include="src\shpch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\VulkanMemoryAllocator\vk_mem_alloc.cpp">
+      <Filter>vendor\VulkanMemoryAllocator</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

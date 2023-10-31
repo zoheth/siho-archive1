@@ -2,7 +2,6 @@
 
 #include "Vulkan.h"
 #include "VulkanDevice.h"
-#include "VulkanAllocator.h"
 
 struct GLFWwindow;
 
@@ -51,14 +50,13 @@ namespace Siho {
 		VkResult QueuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore = VK_NULL_HANDLE);
 
 		void CreateFramebuffer();
-		void CreateDepthStencil();
+		//void CreateDepthStencil();
 		void CreateDrawBuffers();
 		void FindImageFormatAndColorSpace();
 
 	private:
-		VkInstance m_Instance;
+		VkInstance m_Instance = VK_NULL_HANDLE;
 		Ref<VulkanDevice> m_Device;
-		VulkanAllocator m_Allocator;
 
 		VkFormat m_ColorFormat;
 		VkColorSpaceKHR m_ColorSpace;
@@ -104,6 +102,7 @@ namespace Siho {
 		uint32_t m_Width = 0, m_Height = 0;
 
 		VkSurfaceKHR m_Surface;
+
 		friend class VulkanContext;
 	};
 }

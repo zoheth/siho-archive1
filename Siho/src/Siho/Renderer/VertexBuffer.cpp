@@ -27,6 +27,11 @@ namespace Siho {
 		return 0;
 	}
 
+	VertexBufferElement::VertexBufferElement(ShaderDataType type, const std::string& name, bool normalized /*= false*/)
+		: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
+	{
+	}
+
 	inline uint32_t VertexBufferElement::GetComponentCount() const
 	{
 		switch (Type)
@@ -49,18 +54,26 @@ namespace Siho {
 	}
 
 
-	Siho::Ref<Siho::VertexBuffer> VertexBuffer::Create(const void* data, uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Static*/)
+	Ref<VertexBuffer> VertexBuffer::Create(void* data, uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Static*/)
 	{
 		switch (RendererAPI::Current())
 		{
 		case  RendererAPIType::None: return nullptr;
 		case RendererAPIType::Vulkan: return Ref<VulkanVertexBuffer>::Create(data, size, usage);
 		}
+		SH_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
 	}
 
-	Siho::Ref<Siho::VertexBuffer> VertexBuffer::Create(uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Dynamic*/)
+	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Dynamic*/)
 	{
-
+		switch (RendererAPI::Current())
+		{
+		case RendererAPIType::None:    return nullptr;
+		case RendererAPIType::Vulkan:  return Ref<VulkanVertexBuffer>::Create(size, usage);
+		}
+		SH_CORE_ASSERT(false, "Unknown RendererAPI");
+		return nullptr;
 	}
 
 }

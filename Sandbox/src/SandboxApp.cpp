@@ -12,7 +12,6 @@ public:
 
 	void OnUpdate() override
 	{
-		SH_INFO("ExampleLayer::Update");
 		if(Siho::Input::IsKeyPressed(SH_KEY_TAB))
 			SH_TRACE("Tab key is pressed (poll)!");
 	}

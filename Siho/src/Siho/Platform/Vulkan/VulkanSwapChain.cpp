@@ -43,7 +43,6 @@ namespace Siho {
 	{
 		m_Instance = instance;
 		m_Device = device;
-		m_Allocator = VulkanAllocator(device, "SwapChain");
 
 		VkDevice deviceHandle = device->GetHandle();
 		
@@ -360,7 +359,7 @@ namespace Siho {
 			VK_CHECK_RESULT(vkCreateFence(device, &fenceCreateInfo, nullptr, &fence));
 		}
 
-		CreateDepthStencil();
+		// CreateDepthStencil();
 
 		VkFormat depthFormat = m_Device->GetPhysicalDevice()->GetDepthFormat();
 
@@ -438,7 +437,7 @@ namespace Siho {
 		vkDestroyImageView(device, m_DepthStencil.view, nullptr);
 		vkDestroyImage(device, m_DepthStencil.image, nullptr);
 		vkFreeMemory(device, m_DepthStencil.mem, nullptr);
-		CreateDepthStencil();
+		// CreateDepthStencil();
 
 		for (auto& framebuffer : m_Framebuffers)
 		{
@@ -578,7 +577,7 @@ namespace Siho {
 			VK_CHECK_RESULT(vkCreateFramebuffer(m_Device->GetHandle(), &frameBufferCreateInfo, nullptr, &m_Framebuffers[i]));
 		}
 	}
-
+#if 0
 	void VulkanSwapChain::CreateDepthStencil()
 	{
 		VkFormat depthFormat = m_Device->GetPhysicalDevice()->GetDepthFormat();
@@ -618,6 +617,7 @@ namespace Siho {
 
 		VK_CHECK_RESULT(vkCreateImageView(device, &imageViewCreateInfo, nullptr, &m_DepthStencil.view));
 	}
+#endif
 
 	void VulkanSwapChain::CreateDrawBuffers()
 	{

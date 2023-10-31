@@ -42,7 +42,7 @@ namespace Siho {
 				return false;
 			}
 			spirv = m_SPIRVDebugData[stage];
-			std::string error = Compile(spirv, stage, { true, false });
+			error = Compile(spirv, stage, { true, false });
 			if (!error.empty())
 			{
 				SH_CORE_ERROR(error);

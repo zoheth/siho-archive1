@@ -2,6 +2,7 @@
 #include "Renderer.h"
 
 #include "Shader.h"
+#include "ShaderPack.h"
 
 namespace Siho {
 	static RendererConfig s_Config;
@@ -9,7 +10,7 @@ namespace Siho {
 	void Renderer::Init()
 	{
 		// UNDONE 1020
-		Renderer::GetShaderLibrary()->Load("Resources/Shaders/HazelPBR_Static.glsl");
+		// Renderer::GetShaderLibrary()->Load("Resources/Shaders/HazelPBR_Static.glsl");
 	}
 
 	struct RendererData

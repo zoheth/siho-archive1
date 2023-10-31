@@ -3,6 +3,8 @@
 #include <filesystem>
 #include <map>
 
+#include "vulkan/vulkan.h"
+
 #include "Siho/Renderer/Shader.h"
 
 namespace Siho {

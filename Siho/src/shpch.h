@@ -20,3 +20,4 @@
 #include "Siho/Core/Application.h"
 #include "Siho/Core/Base.h"
 #include "Siho/Core/Log.h"
+#include "Siho/Core/Memory.h"
