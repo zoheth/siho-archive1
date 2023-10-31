@@ -212,7 +212,13 @@
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp">
       <Filter>src\Siho\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.cpp">
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
+    </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCache.cpp">
+      <Filter>src\Siho\Platform\Vulkan\ShaderCompiler</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\VulkanShaderCompiler.cpp">
       <Filter>src\Siho\Platform\Vulkan\ShaderCompiler</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanAllocator.cpp">
@@ -261,6 +267,9 @@
       <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\ShaderPack.cpp">
+      <Filter>src\Siho\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Renderer\VertexBuffer.cpp">
       <Filter>src\Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Utilities\StringUtils.cpp">

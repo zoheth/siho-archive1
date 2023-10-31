@@ -31,6 +31,21 @@ namespace Siho {
 		return s_Config;
 	}
 
+	uint32_t Renderer::GetCurrentFrameIndex()
+	{
+
+	}
+
+	uint32_t Renderer::RT_GetCurrentFrameIndex()
+	{
+
+	}
+
+	Siho::RenderCommandQueue& Renderer::GetRenderResourceReleaseQueue(uint32_t index)
+	{
+
+	}
+
 	const std::unordered_map<std::string, std::string>& Renderer::GetGlobalShaderMacros()
 	{
 		return s_Data->GlobalShaderMacros;
