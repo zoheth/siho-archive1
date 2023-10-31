@@ -37,20 +37,47 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Siho.h" />
-    <ClInclude Include="src\Siho\Application.h">
-      <Filter>Siho</Filter>
+    <ClInclude Include="src\Siho\Core\Application.h">
+      <Filter>Siho\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Siho\Core.h">
-      <Filter>Siho</Filter>
+    <ClInclude Include="src\Siho\Core\Base.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\Buffer.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\EntryPoint.h">
+      <Filter>Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Hash.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\Input.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\KeyCodes.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\Layer.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\LayerStack.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\Log.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\Memory.h">
+      <Filter>Siho\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Siho\Core\MouseButtonCodes.h">
       <Filter>Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Core\Ref.h">
       <Filter>Siho\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Siho\EntryPoint.h">
-      <Filter>Siho</Filter>
+    <ClInclude Include="src\Siho\Core\Window.h">
+      <Filter>Siho\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Events\ApplicationEvent.h">
       <Filter>Siho\Events</Filter>
@@ -66,24 +93,6 @@
     </ClInclude>
     <ClInclude Include="src\Siho\ImGui\ImguiLayer.h">
       <Filter>Siho\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\Input.h">
-      <Filter>Siho</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\KeyCodes.h">
-      <Filter>Siho</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\Layer.h">
-      <Filter>Siho</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\LayerStack.h">
-      <Filter>Siho</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\Log.h">
-      <Filter>Siho</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\MouseButtonCodes.h">
-      <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.h">
       <Filter>Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
@@ -127,6 +136,9 @@
     <ClInclude Include="src\Siho\Platform\Vulkan\VulkanSwapChain.h">
       <Filter>Siho\Platform\Vulkan</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Platform\Vulkan\VulkanVertexBuffer.h">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Platform\Windows\WindowsInput.h">
       <Filter>Siho\Platform\Windows</Filter>
     </ClInclude>
@@ -157,19 +169,28 @@
     <ClInclude Include="src\Siho\Renderer\ShaderPack.h">
       <Filter>Siho\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Renderer\VertexBuffer.h">
+      <Filter>Siho\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Siho\Utilities\StringUtils.h">
       <Filter>Siho\Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Siho\Window.h">
-      <Filter>Siho</Filter>
     </ClInclude>
     <ClInclude Include="src\shpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Siho\Application.cpp">
-      <Filter>Siho</Filter>
+    <ClCompile Include="src\Siho\Core\Application.cpp">
+      <Filter>Siho\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Core\Hash.cpp">
+      <Filter>Siho\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Core\Layer.cpp">
+      <Filter>Siho\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Core\LayerStack.cpp">
+      <Filter>Siho\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Core\Log.cpp">
       <Filter>Siho\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\ImGui\ImGuiBuild.cpp">
@@ -177,18 +198,6 @@
     </ClCompile>
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp">
       <Filter>Siho\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Input.cpp">
-      <Filter>Siho</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Layer.cpp">
-      <Filter>Siho</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\LayerStack.cpp">
-      <Filter>Siho</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Siho\Log.cpp">
-      <Filter>Siho</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.cpp">
       <Filter>Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing</Filter>
@@ -223,6 +232,9 @@
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanSwapChain.cpp">
       <Filter>Siho\Platform\Vulkan</Filter>
     </ClCompile>
+    <ClCompile Include="src\Siho\Platform\Vulkan\VulkanVertexBuffer.cpp">
+      <Filter>Siho\Platform\Vulkan</Filter>
+    </ClCompile>
     <ClCompile Include="src\Siho\Platform\Windows\WindowsInput.cpp">
       <Filter>Siho\Platform\Windows</Filter>
     </ClCompile>
@@ -242,6 +254,9 @@
       <Filter>Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Renderer\ShaderPack.cpp">
+      <Filter>Siho\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Siho\Renderer\VertexBuffer.cpp">
       <Filter>Siho\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Siho\Utilities\StringUtils.cpp">
