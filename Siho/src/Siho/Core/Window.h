@@ -5,6 +5,7 @@
 #include "Siho/Renderer/RendererContext.h"
 
 namespace Siho {
+	class VulkanSwapChain;
 	class RendererContext;
 
 	struct WindowProps
@@ -39,6 +40,9 @@ namespace Siho {
 		virtual bool IsVSync() const = 0;
 
 		virtual void* GetNativeWindow() const = 0;
+
+		virtual Ref<RendererContext> GetRenderContext() = 0;
+		virtual VulkanSwapChain& GetSwapChain() = 0;
 
 		virtual Ref<RendererContext> GetRenderContext() = 0;
 

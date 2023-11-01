@@ -2,8 +2,8 @@
 
 #include "RendererContext.h"
 #include "RenderCommandQueue.h"
-
 #include "RendererConfig.h"
+#include "Siho/Core/RenderThread.h"
 
 namespace Siho {
 
@@ -61,7 +61,10 @@ namespace Siho {
 				});
 		}
 
-		static void WaitAndRender();
+		static void WaitAndRender(RenderThread* renderThread);
+		static void SwapQueues();
+
+		static void RenderThreadFunc(RenderThread* renderThread);
 
 		static void BeginFrame();
 		static void EndFrame();

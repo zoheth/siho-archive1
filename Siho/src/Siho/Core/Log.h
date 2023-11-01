@@ -20,10 +20,10 @@ namespace Siho {
 #define SH_CORE_INFO(...)	::Siho::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define SH_CORE_WARN(...)	::Siho::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define SH_CORE_ERROR(...)	::Siho::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define SH_CORE_FATAL(...)	::Siho::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define SH_CORE_FATAL(...)	::Siho::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 #define SH_TRACE(...)		::Siho::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define SH_INFO(...)		::Siho::Log::GetClientLogger()->info(__VA_ARGS__)
 #define SH_WARN(...)		::Siho::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define SH_ERROR(...)		::Siho::Log::GetClientLogger()->error(__VA_ARGS__)
-#define SH_FATAL(...)		::Siho::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define SH_FATAL(...)		::Siho::Log::GetClientLogger()->critical(__VA_ARGS__)

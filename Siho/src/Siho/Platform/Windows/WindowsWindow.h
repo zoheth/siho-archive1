@@ -2,6 +2,7 @@
 
 #include "Siho/Core/Window.h"
 #include "Siho/Renderer/RendererContext.h"
+#include "Siho/Platform/Vulkan/VulkanSwapChain.h"
 
 #include <GLFW/glfw3.h>
 
@@ -26,6 +27,7 @@ namespace Siho {
 		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 		virtual Ref<RendererContext> GetRenderContext() override { return m_RendererContext; }
+		virtual VulkanSwapChain& GetSwapChain() override;
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
@@ -41,6 +43,8 @@ namespace Siho {
 			EventCallbackFn EventCallback;
 		};
 		WindowData m_Data;
+
+		VulkanSwapChain m_SwapChain;
 	};
 	
 }

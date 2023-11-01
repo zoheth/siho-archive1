@@ -10,10 +10,26 @@
 
 namespace Siho {
 
-	class SIHO_API Application
+	struct ApplicationSpecs
 	{
+		std::string Name = "Siho";
+		uint32_t WindowWidth = 1600, WindowHeight = 900;
+
+	};
+
+	class Application
+	{
+		using EventCallbackFn = std::function<void(Event&)>;
 	public:
-		Application();
+		struct PerformanceTimers
+		{
+			float MainThreadWorkTime = 0.0f;
+			float MainThreadIdleTime = 0.0f;
+			float RenderThreadWorkTime = 0.0f;
+			float RenderThreadIdleTime = 0.0f;
+		};
+	public:
+		Application(const ApplicationSpecs& specification);
 		virtual ~Application();
 		
 		void Run();
@@ -27,13 +43,22 @@ namespace Siho {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
-
+	private:
 		std::unique_ptr<Window> m_Window;
-		ImGuiLayer* m_ImGuiLayer;
+		ApplicationSpecs m_Specification;
 		bool m_Running = true;
+		bool m_Minimized = false;
+
+		ImGuiLayer* m_ImGuiLayer;
 		LayerStack m_LayerStack;
 
+		RenderThread m_RenderThread;
+
+		PerformanceTimers m_PerformanceTimers;
+
 		static Application* s_Instance;
+
+		friend class Renderer;
 	};
 
 	// To be defined in CLIENT

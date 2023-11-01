@@ -10,7 +10,7 @@ namespace Siho {
 	void Renderer::Init()
 	{
 		// UNDONE 1020
-		// Renderer::GetShaderLibrary()->Load("Resources/Shaders/HazelPBR_Static.glsl");
+		Renderer::GetShaderLibrary()->Load("Resources/Shaders/HazelPBR_Static.glsl");
 	}
 
 	struct RendererData
@@ -26,6 +26,25 @@ namespace Siho {
 	{
 		return s_Data->m_ShaderLibrary;
 	}
+
+	void Renderer::WaitAndRender(RenderThread* renderThread)
+	{
+		auto& performanceTimer = Application::Get().m_PerformanceTimers;
+
+		// Wait for kick, then set render thread to busy
+		{
+			Timer
+		}
+	}
+
+	void Renderer::RenderThreadFunc(RenderThread* renderThread)
+	{
+		while (renderThread->IsRunning())
+		{
+			WaitAndRender(renderThread);
+		}
+	}
+
 	RendererConfig& Renderer::GetConfig()
 	{
 		return s_Config;
@@ -38,7 +57,8 @@ namespace Siho {
 
 	uint32_t Renderer::RT_GetCurrentFrameIndex()
 	{
-
+		// Swapchain owns the Render Thread frame index
+		return Application::Get().GetWindow().GetSwapChain().GetCurrentBufferIndex();
 	}
 
 	Siho::RenderCommandQueue& Renderer::GetRenderResourceReleaseQueue(uint32_t index)

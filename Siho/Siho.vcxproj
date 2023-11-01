@@ -157,6 +157,9 @@
     <ClInclude Include="src\Siho\Core\Memory.h" />
     <ClInclude Include="src\Siho\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Siho\Core\Ref.h" />
+    <ClInclude Include="src\Siho\Core\RenderThread.h" />
+    <ClInclude Include="src\Siho\Core\Thread.h" />
+    <ClInclude Include="src\Siho\Core\Timer.h" />
     <ClInclude Include="src\Siho\Core\Window.h" />
     <ClInclude Include="src\Siho\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Siho\Events\Event.h" />
@@ -198,6 +201,7 @@
     <ClCompile Include="src\Siho\Core\Layer.cpp" />
     <ClCompile Include="src\Siho\Core\LayerStack.cpp" />
     <ClCompile Include="src\Siho\Core\Log.cpp" />
+    <ClCompile Include="src\Siho\Core\RenderThread.cpp" />
     <ClCompile Include="src\Siho\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Siho\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\ShaderCompiler\ShaderPreprocessing\GlslIncluder.cpp" />
@@ -213,6 +217,7 @@
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanSwapChain.cpp" />
     <ClCompile Include="src\Siho\Platform\Vulkan\VulkanVertexBuffer.cpp" />
     <ClCompile Include="src\Siho\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Siho\Platform\Windows\WindowsThread.cpp" />
     <ClCompile Include="src\Siho\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Siho\Renderer\RenderCommandQueue.cpp" />
     <ClCompile Include="src\Siho\Renderer\Renderer.cpp" />

@@ -192,6 +192,9 @@
     <ClInclude Include="vendor\VulkanMemoryAllocator\vk_mem_alloc.h">
       <Filter>vendor\VulkanMemoryAllocator</Filter>
     </ClInclude>
+    <ClInclude Include="src\Siho\Core\RenderThread.h" />
+    <ClInclude Include="src\Siho\Core\Thread.h" />
+    <ClInclude Include="src\Siho\Core\Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Siho\Core\Application.cpp">
@@ -281,5 +284,7 @@
     <ClCompile Include="vendor\VulkanMemoryAllocator\vk_mem_alloc.cpp">
       <Filter>vendor\VulkanMemoryAllocator</Filter>
     </ClCompile>
+    <ClCompile Include="src\Siho\Core\RenderThread.cpp" />
+    <ClCompile Include="src\Siho\Platform\Windows\WindowsThread.cpp" />
   </ItemGroup>
 </Project>
