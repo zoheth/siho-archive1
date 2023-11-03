@@ -11,3 +11,6 @@
 [submodule "Siho/vendor/glm"]
 	path = Siho/vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "Siho/vendor/volk"]
+	path = Siho/vendor/volk
+	url = https://github.com/zeux/volk
