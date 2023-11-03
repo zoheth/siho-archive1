@@ -4,8 +4,8 @@
 #include "Siho/Platform/Vulkan/VulkanContext.h"
 
 namespace Siho {
-	Ref<RendererContext> RendererContext::Create(GLFWwindow* windowHandle)
+	std::shared_ptr<RendererContext> RendererContext::Create(GLFWwindow* windowHandle)
 	{
-		return Ref<VulkanContext>::Create(windowHandle);
+		return std::make_shared<VulkanContext>(windowHandle);
 	}
 }

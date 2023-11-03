@@ -17,10 +17,10 @@ namespace Siho {
 
 	void* RenderCommandQueue::Allocate(RenderCommandFn func, uint32_t size)
 	{
-		*(RenderCommandFn*)m_CommandBufferPtr = func;
+		*reinterpret_cast<RenderCommandFn*>(m_CommandBufferPtr) = func;
 		m_CommandBufferPtr += sizeof(RenderCommandFn);
 
-		*(uint32_t*)m_CommandBufferPtr = size;
+		*reinterpret_cast<uint32_t*>(m_CommandBufferPtr) = size;
 		m_CommandBufferPtr += sizeof(uint32_t);
 
 		void* memory = m_CommandBufferPtr;
@@ -36,11 +36,11 @@ namespace Siho {
 		for (uint32_t i = 0; i < m_CommandCount; i++)
 		{
 			// Get the function pointer
-			RenderCommandFn func = *(RenderCommandFn*)buffer;
+			const RenderCommandFn func = *reinterpret_cast<RenderCommandFn*>(buffer);
 			buffer += sizeof(RenderCommandFn);
 
 			// Get the size of the data
-			uint32_t size = *(uint32_t*)buffer;
+			const uint32_t size = *reinterpret_cast<uint32_t*>(buffer);
 			buffer += sizeof(uint32_t);
 
 			// Call the function with the data

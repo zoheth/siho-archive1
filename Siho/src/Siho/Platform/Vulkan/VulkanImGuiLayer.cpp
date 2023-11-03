@@ -26,12 +26,10 @@ namespace Siho {
 	}
 
 	VulkanImGuiLayer::VulkanImGuiLayer()
-	{
-	}
+	= default;
 
 	VulkanImGuiLayer::~VulkanImGuiLayer()
-	{
-	}
+	= default;
 
 	void VulkanImGuiLayer::OnAttach()
 	{
@@ -134,7 +132,7 @@ namespace Siho {
 			ImGui_ImplVulkan_DestroyFontUploadObjects();
 		}
 
-		uint32_t framesInFlight = Renderer::GetConfig().FramesInFlight;
+		const uint32_t framesInFlight = Renderer::GetConfig().FramesInFlight;
 		s_ImGuiCommandBuffers.resize(framesInFlight);
 		for (uint32_t i = 0; i < framesInFlight; i++)
 		{
@@ -207,9 +205,9 @@ namespace Siho {
 
 		VkViewport viewport = {};
 		viewport.x = 0.0f;
-		viewport.y = (float)height;
-		viewport.height = -(float)height;
-		viewport.width = (float)width;
+		viewport.y = static_cast<float>(height);
+		viewport.height = -static_cast<float>(height);
+		viewport.width = static_cast<float>(width);
 		viewport.minDepth = 0.0f;
 		viewport.maxDepth = 1.0f;
 		vkCmdSetViewport(s_ImGuiCommandBuffers[commandBufferIndex], 0, 1, &viewport);
@@ -233,7 +231,7 @@ namespace Siho {
 
 		vkCmdEndRenderPass(drawCommandBuffer);
 
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		const ImGuiIO& io = ImGui::GetIO(); (void)io;
 		// Update and Render additional Platform Windows
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
 		{

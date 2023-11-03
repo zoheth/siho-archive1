@@ -4,9 +4,10 @@
 #include "Siho/Renderer/RendererAPI.h"
 #include "Siho/Platform/Vulkan/VulkanVertexBuffer.h"
 
+
 namespace Siho {
 
-	inline static uint32_t ShaderDataTypeSize(ShaderDataType type)
+	static uint32_t ShaderDataTypeSize(const ShaderDataType type)
 	{
 		switch (type)
 		{
@@ -21,14 +22,16 @@ namespace Siho {
 		case ShaderDataType::Int3:     return 4 * 3;
 		case ShaderDataType::Int4:     return 4 * 4;
 		case ShaderDataType::Bool:     return 1;
+		case ShaderDataType::None:
+			break;
 		}
 
-		SH_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		SH_CORE_ASSERT(false, "Unknown ShaderDataType!")
 		return 0;
 	}
 
-	VertexBufferElement::VertexBufferElement(ShaderDataType type, const std::string& name, bool normalized /*= false*/)
-		: Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
+	VertexBufferElement::VertexBufferElement(const ShaderDataType type, std::string name, const bool normalized /*= false*/)
+		: Name(std::move(name)), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
 	{
 	}
 
@@ -49,30 +52,30 @@ namespace Siho {
 		case ShaderDataType::Bool:    return 1;
 		}
 
-		SH_CORE_ASSERT(false, "Unknown ShaderDataType!");
+		SH_CORE_ASSERT(false, "Unknown ShaderDataType!")
 		return 0;
 	}
 
 
-	Ref<VertexBuffer> VertexBuffer::Create(void* data, uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Static*/)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(void* data, uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Static*/)
 	{
 		switch (RendererAPI::Current())
 		{
 		case  RendererAPIType::None: return nullptr;
-		case RendererAPIType::Vulkan: return Ref<VulkanVertexBuffer>::Create(data, size, usage);
+		case RendererAPIType::Vulkan: return std::make_shared<VulkanVertexBuffer>(data, size, usage);
 		}
-		SH_CORE_ASSERT(false, "Unknown RendererAPI!");
+		SH_CORE_ASSERT(false, "Unknown RendererAPI!")
 		return nullptr;
 	}
 
-	Ref<VertexBuffer> VertexBuffer::Create(uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Dynamic*/)
+	std::shared_ptr<VertexBuffer> VertexBuffer::Create(uint32_t size, VertexBufferUsage usage /*= VertexBufferUsage::Dynamic*/)
 	{
 		switch (RendererAPI::Current())
 		{
 		case RendererAPIType::None:    return nullptr;
-		case RendererAPIType::Vulkan:  return Ref<VulkanVertexBuffer>::Create(size, usage);
+		case RendererAPIType::Vulkan:  return std::make_shared<VulkanVertexBuffer>(size, usage);
 		}
-		SH_CORE_ASSERT(false, "Unknown RendererAPI");
+		SH_CORE_ASSERT(false, "Unknown RendererAPI")
 		return nullptr;
 	}
 

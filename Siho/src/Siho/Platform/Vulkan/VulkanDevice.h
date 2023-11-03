@@ -1,14 +1,12 @@
 #pragma once
 
-#include "Siho/Core/Ref.h"
-
 #include "Vulkan.h"
 
 #include <unordered_set>
 
 namespace Siho {
 
-	class VulkanPhysicalDevice : public RefCounted
+	class VulkanPhysicalDevice
 	{
 	public:
 		struct QueueFamilyIndices
@@ -54,28 +52,28 @@ namespace Siho {
 		friend class VulkanDevice;
 	};
 
-	class VulkanDevice : public RefCounted
+	class VulkanDevice
 	{
 	public:
-		VulkanDevice(const Ref<VulkanPhysicalDevice>& physicalDevice, VkPhysicalDeviceFeatures enabledFeatures);
+		VulkanDevice(const std::shared_ptr<VulkanPhysicalDevice>& physicalDevice, VkPhysicalDeviceFeatures enabledFeatures);
 		~VulkanDevice();
 
 		void Destory();
 
-		VkQueue GetQueue() { return m_Queue; }
-		VkQueue GetComputeQueue() { return m_ComputeQueue; }
+		VkQueue GetQueue() const { return m_Queue; }
+		VkQueue GetComputeQueue() const { return m_ComputeQueue; }
 
 		VkCommandBuffer GetCommandBuffer(bool begin, bool compute = false);
 		void FlushCommandBuffer(VkCommandBuffer commandBuffer);
 		void FlushCommandBuffer(VkCommandBuffer commandBuffer, VkQueue queue);
 
 		VkCommandBuffer CreateSecondaryCommandBuffer();
-		const Ref<VulkanPhysicalDevice>& GetPhysicalDevice() const { return m_PhysicalDevice; }
+		const std::shared_ptr<VulkanPhysicalDevice>& GetPhysicalDevice() const { return m_PhysicalDevice; }
 		VkDevice GetHandle() const { return m_Handle; }
 
 	private:
 		VkDevice m_Handle = nullptr;
-		Ref<VulkanPhysicalDevice> m_PhysicalDevice;
+		std::shared_ptr<VulkanPhysicalDevice> m_PhysicalDevice;
 		VkPhysicalDeviceFeatures m_EnabledFeatures;
 		VkCommandPool m_CommandPool, m_ComputeCommandPool;
 

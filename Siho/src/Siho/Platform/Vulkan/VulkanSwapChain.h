@@ -25,20 +25,20 @@ namespace Siho {
 		uint32_t GetWidth() const { return m_Width; }
 		uint32_t GetHeight() const { return m_Height; }
 
-		VkRenderPass GetRenderPass() { return m_RenderPass; }
+		VkRenderPass GetRenderPass() const { return m_RenderPass; }
 
-		VkFramebuffer GetCurrentFramebuffer() { return GetFramebuffer(m_CurrentBufferIndex); }
-		VkCommandBuffer GetCurrentDrawCommandBuffer() { return GetDrawCommandBuffer(m_CurrentBufferIndex); }
+		VkFramebuffer GetCurrentFramebuffer() const { return GetFramebuffer(m_CurrentBufferIndex); }
+		VkCommandBuffer GetCurrentDrawCommandBuffer() const { return GetDrawCommandBuffer(m_CurrentBufferIndex); }
 
-		VkFormat GetColorFormat() { return m_ColorFormat; }
+		VkFormat GetColorFormat() const { return m_ColorFormat; }
 
 		uint32_t GetCurrentBufferIndex() const { return m_CurrentBufferIndex; }
-		VkFramebuffer GetFramebuffer(uint32_t index)
+		VkFramebuffer GetFramebuffer(uint32_t index) const
 		{
 			SH_CORE_ASSERT(index < m_ImageCount);
 			return m_Framebuffers[index];
 		}
-		VkCommandBuffer GetDrawCommandBuffer(uint32_t index)
+		VkCommandBuffer GetDrawCommandBuffer(uint32_t index) const
 		{
 			SH_CORE_ASSERT(index < m_ImageCount);
 			return m_DrawCommandBuffers[index];
@@ -47,7 +47,7 @@ namespace Siho {
 		void Cleanup();
 	private:
 		VkResult AcquireNextImage(VkSemaphore presentCompleteSemaphore, uint32_t* imageIndex);
-		VkResult QueuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore = VK_NULL_HANDLE);
+		VkResult QueuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore = VK_NULL_HANDLE) const;
 
 		void CreateFramebuffer();
 		//void CreateDepthStencil();

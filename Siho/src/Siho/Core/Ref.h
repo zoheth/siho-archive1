@@ -7,6 +7,16 @@ namespace Siho {
 	class RefCounted
 	{
 	public:
+		// Delete copy semantics
+		RefCounted(const RefCounted&) = delete;
+		RefCounted& operator=(const RefCounted&) = delete;
+
+		// Delete move semantics
+		RefCounted(RefCounted&&) = delete;
+		RefCounted& operator=(RefCounted&&) = delete;
+
+		virtual ~RefCounted() = default;
+
 		void IncRefCount() const
 		{
 			m_RefCount++;

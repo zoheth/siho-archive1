@@ -17,15 +17,18 @@
 	SH_CORE_ASSERT(fp##entrypoint);                                     \
 }
 
-static PFN_vkGetPhysicalDeviceSurfaceSupportKHR fpGetPhysicalDeviceSurfaceSupportKHR;
-static PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR fpGetPhysicalDeviceSurfaceCapabilitiesKHR;
-static PFN_vkGetPhysicalDeviceSurfaceFormatsKHR fpGetPhysicalDeviceSurfaceFormatsKHR;
-static PFN_vkGetPhysicalDeviceSurfacePresentModesKHR fpGetPhysicalDeviceSurfacePresentModesKHR;
-static PFN_vkCreateSwapchainKHR fpCreateSwapchainKHR;
-static PFN_vkDestroySwapchainKHR fpDestroySwapchainKHR;
-static PFN_vkGetSwapchainImagesKHR fpGetSwapchainImagesKHR;
-static PFN_vkAcquireNextImageKHR fpAcquireNextImageKHR;
-static PFN_vkQueuePresentKHR fpQueuePresentKHR;
+namespace
+{
+	PFN_vkGetPhysicalDeviceSurfaceSupportKHR fpGetPhysicalDeviceSurfaceSupportKHR;
+	PFN_vkGetPhysicalDeviceSurfaceCapabilitiesKHR fpGetPhysicalDeviceSurfaceCapabilitiesKHR;
+	PFN_vkGetPhysicalDeviceSurfaceFormatsKHR fpGetPhysicalDeviceSurfaceFormatsKHR;
+	PFN_vkGetPhysicalDeviceSurfacePresentModesKHR fpGetPhysicalDeviceSurfacePresentModesKHR;
+	PFN_vkCreateSwapchainKHR fpCreateSwapchainKHR;
+	PFN_vkDestroySwapchainKHR fpDestroySwapchainKHR;
+	PFN_vkGetSwapchainImagesKHR fpGetSwapchainImagesKHR;
+	PFN_vkAcquireNextImageKHR fpAcquireNextImageKHR;
+	PFN_vkQueuePresentKHR fpQueuePresentKHR;
+}
 
 // Nvidia extensions
 PFN_vkCmdSetCheckpointNV fpCmdSetCheckpointNV;
@@ -44,7 +47,7 @@ namespace Siho {
 		m_Instance = instance;
 		m_Device = device;
 
-		VkDevice deviceHandle = device->GetHandle();
+		const VkDevice deviceHandle = device->GetHandle();
 		
 		// In Vulkan, many functions can be dynamically provided by the driver. 
 		// The vkGetDeviceProcAddr and vkGetInstanceProcAddr functions enable 
@@ -73,7 +76,7 @@ namespace Siho {
 	}
 	void VulkanSwapChain::InitSurface(GLFWwindow* windowHandle)
 	{
-		VkPhysicalDevice physicalDevice = m_Device->GetPhysicalDevice()->GetHandle();
+		const VkPhysicalDevice physicalDevice = m_Device->GetPhysicalDevice()->GetHandle();
 
 		glfwCreateWindowSurface(m_Instance, windowHandle, nullptr, &m_Surface);
 
@@ -168,7 +171,7 @@ namespace Siho {
 
 		VkExtent2D swapchainExtent = {};
 		// If width (and height) equals the special value 0xFFFFFFFF, the size of the surface will be set by the swapchain
-		if (surfCaps.currentExtent.width == (uint32_t)-1)
+		if (surfCaps.currentExtent.width == static_cast<uint32_t>(-1))
 		{
 			// If the surface size is undefined, the size is set to
 			// the size of the images requested.
@@ -258,7 +261,7 @@ namespace Siho {
 		swapchainCI.imageColorSpace = m_ColorSpace;
 		swapchainCI.imageExtent = { swapchainExtent.width, swapchainExtent.height };
 		swapchainCI.imageUsage = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
-		swapchainCI.preTransform = (VkSurfaceTransformFlagBitsKHR)preTransform;
+		swapchainCI.preTransform = static_cast<VkSurfaceTransformFlagBitsKHR>(preTransform);
 		swapchainCI.imageArrayLayers = 1;
 		swapchainCI.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
 		swapchainCI.queueFamilyIndexCount = 0;
@@ -439,7 +442,7 @@ namespace Siho {
 		vkFreeMemory(device, m_DepthStencil.mem, nullptr);
 		// CreateDepthStencil();
 
-		for (auto& framebuffer : m_Framebuffers)
+		for (const auto& framebuffer : m_Framebuffers)
 		{
 			vkDestroyFramebuffer(device, framebuffer, nullptr);
 		}
@@ -472,7 +475,7 @@ namespace Siho {
 		VK_CHECK_RESULT(vkResetFences(m_Device->GetHandle(), 1, &m_WaitFences[m_CurrentBufferIndex]));
 
 		// Pipeline stage at which the queue submission will wait (via pWaitSemaphores)
-		VkPipelineStageFlags waitStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+		constexpr VkPipelineStageFlags waitStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
 		// The submit info structure specifies a command buffer queue submission batch
 		VkSubmitInfo submitInfo = {};
 		submitInfo.sType = VK_STRUCTURE_TYPE_SUBMIT_INFO;
@@ -490,7 +493,7 @@ namespace Siho {
 		// Present the current buffer to the swap chain
 		// Pass the semaphore signaled by the command buffer submission from the submit info as the wait semaphore for swap chain presentation
 		// This ensures that the image is not presented to the windowing system until all commands have been submitted
-		VkResult result = QueuePresent(m_Device->GetQueue(), m_CurrentBufferIndex, m_Semaphores.renderComplete);
+		const VkResult result = QueuePresent(m_Device->GetQueue(), m_CurrentBufferIndex, m_Semaphores.renderComplete);
 
 		if (result != VK_SUCCESS || result == VK_SUBOPTIMAL_KHR)
 		{
@@ -509,7 +512,7 @@ namespace Siho {
 
 	void VulkanSwapChain::Cleanup()
 	{
-		VkDevice device = m_Device->GetHandle();
+		const VkDevice device = m_Device->GetHandle();
 
 		if (m_SwapChain)
 		{
@@ -534,14 +537,14 @@ namespace Siho {
 	{
 		// By setting timeout to UINT64_MAX we will always wait until the next image has been acquired or an actual error is thrown
 		// With that we don't have to handle VK_NOT_READY
-		return fpAcquireNextImageKHR(m_Device->GetHandle(), m_SwapChain, UINT64_MAX, presentCompleteSemaphore, (VkFence)nullptr, imageIndex);
+		return fpAcquireNextImageKHR(m_Device->GetHandle(), m_SwapChain, UINT64_MAX, presentCompleteSemaphore, static_cast<VkFence>(nullptr), imageIndex);
 	}
 
-	VkResult VulkanSwapChain::QueuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore)
+	VkResult VulkanSwapChain::QueuePresent(VkQueue queue, uint32_t imageIndex, VkSemaphore waitSemaphore) const
 	{
 		VkPresentInfoKHR presentInfo = {};
 		presentInfo.sType = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;
-		presentInfo.pNext = NULL;
+		presentInfo.pNext = nullptr;
 		presentInfo.swapchainCount = 1;
 		presentInfo.pSwapchains = &m_SwapChain;
 		presentInfo.pImageIndices = &imageIndex;
@@ -641,7 +644,7 @@ namespace Siho {
 
 	void VulkanSwapChain::FindImageFormatAndColorSpace()
 	{
-		VkPhysicalDevice physicalDevice = m_Device->GetPhysicalDevice()->GetHandle();
+		const VkPhysicalDevice physicalDevice = m_Device->GetPhysicalDevice()->GetHandle();
 
 		// Get list of supported surface formats
 		uint32_t formatCount;

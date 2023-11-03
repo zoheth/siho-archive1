@@ -12,11 +12,18 @@ namespace Siho {
 		VulkanVertexBuffer(void* data, uint32_t size, VertexBufferUsage usage = VertexBufferUsage::Static);
 		VulkanVertexBuffer(uint32_t size, VertexBufferUsage usage = VertexBufferUsage::Dynamic);
 
-		virtual ~VulkanVertexBuffer() override;
+		~VulkanVertexBuffer() override;
 
-		virtual void SetData(void* data, uint32_t size, uint32_t offset = 0) override;
-		virtual void RenderThread_SetData(void* buffer, uint32_t size, uint32_t offset = 0) override;
-		virtual void Bind() const override {};
+
+		VulkanVertexBuffer(const VulkanVertexBuffer&) = delete;
+		VulkanVertexBuffer& operator=(const VulkanVertexBuffer&) = delete;
+		VulkanVertexBuffer(VulkanVertexBuffer&&) = delete;
+		VulkanVertexBuffer& operator=(VulkanVertexBuffer&&) = delete;
+
+
+		void SetData(void* data, uint32_t size, uint32_t offset = 0) override;
+		void RenderThread_SetData(void* buffer, uint32_t size, uint32_t offset = 0) override;
+		void Bind() const override {};
 
 	private:
 		uint32_t m_Size;

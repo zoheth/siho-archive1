@@ -238,7 +238,7 @@ namespace Siho {
 		return indices;
 	}
 
-	VulkanDevice::VulkanDevice(const Ref<VulkanPhysicalDevice>& physicalDevice, VkPhysicalDeviceFeatures enabledFeatures)
+	VulkanDevice::VulkanDevice(const std::shared_ptr<VulkanPhysicalDevice>& physicalDevice, VkPhysicalDeviceFeatures enabledFeatures)
 		: m_PhysicalDevice(physicalDevice), m_EnabledFeatures(enabledFeatures)
 	{
 		std::vector<const char*> deviceExtensions;

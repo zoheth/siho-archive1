@@ -27,7 +27,7 @@ namespace Siho {
 
 		VertexBufferElement() = default;
 
-		VertexBufferElement(ShaderDataType type, const std::string& name, bool normalized = false);
+		VertexBufferElement(ShaderDataType type, std::string name, bool normalized = false);
 
 		uint32_t GetComponentCount() const;
 	};
@@ -35,7 +35,7 @@ namespace Siho {
 	class VertexBufferLayout
 	{
 	public:
-		VertexBufferLayout() {}
+		VertexBufferLayout() = default;
 
 		VertexBufferLayout(const std::initializer_list<VertexBufferElement>& elements)
 			: m_Elements(elements)
@@ -45,7 +45,7 @@ namespace Siho {
 
 		uint32_t GetStride() const { return m_Stride; }
 		const std::vector<VertexBufferElement>& GetElements() const { return m_Elements; }
-		uint32_t GetElementCount() const { return (uint32_t)m_Elements.size(); }
+		uint32_t GetElementCount() const { return static_cast<uint32_t>(m_Elements.size()); }
 
 		[[nodiscard]] std::vector<VertexBufferElement>::iterator begin() { return m_Elements.begin(); }
 		[[nodiscard]] std::vector<VertexBufferElement>::iterator end() { return m_Elements.end(); }
@@ -73,19 +73,18 @@ namespace Siho {
 		None = 0, Static = 1, Dynamic = 2
 	};
 
-	class VertexBuffer : public RefCounted
+	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() {}
 
 		virtual void SetData(void* buffer, uint32_t size, uint32_t offset = 0) = 0;
 		virtual void RenderThread_SetData(void* buffer, uint32_t size, uint32_t offset = 0) = 0;
 		virtual void Bind() const = 0;
 
 		virtual uint64_t GetSize() const = 0;
-		virtual uint32_t GetRendererID() const = 0;
+		virtual uint32_t GetRendererId() const = 0;
 
-		static Ref<VertexBuffer> Create(void* data, uint32_t size, VertexBufferUsage usage = VertexBufferUsage::Static);
-		static Ref<VertexBuffer> Create(uint32_t size, VertexBufferUsage usage = VertexBufferUsage::Dynamic);
+		static std::shared_ptr<VertexBuffer> Create(void* data, uint32_t size, VertexBufferUsage usage = VertexBufferUsage::Static);
+		static std::shared_ptr<VertexBuffer> Create(uint32_t size, VertexBufferUsage usage = VertexBufferUsage::Dynamic);
 	};
 }

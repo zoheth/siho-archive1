@@ -6,7 +6,7 @@
 
 namespace Siho
 {
-	class Shader : public RefCounted
+	class Shader
 	{
 	public:
 		static Ref<Shader> Create(const std::string& filepath, bool forceCompile = false, bool disableOptimization = false);
@@ -14,7 +14,7 @@ namespace Siho
 
 	class ShaderPack;
 
-	class ShaderLibrary : public RefCounted
+	class ShaderLibrary
 	{
 	public:
 		ShaderLibrary() = default;

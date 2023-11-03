@@ -7,7 +7,7 @@
 
 namespace Siho::ShaderUtils {
 
-	inline static std::string_view VKStageToShaderMacro(const VkShaderStageFlagBits stage)
+	static std::string_view VKStageToShaderMacro(const VkShaderStageFlagBits stage)
 	{
 		if (stage == VK_SHADER_STAGE_VERTEX_BIT)   return "__VERTEX_STAGE__";
 		if (stage == VK_SHADER_STAGE_FRAGMENT_BIT) return "__FRAGMENT_STAGE__";
@@ -16,7 +16,7 @@ namespace Siho::ShaderUtils {
 		return "UNKNOWN";
 	}
 
-	inline static VkShaderStageFlagBits ShaderTypeFromString(const std::string_view type)
+	static VkShaderStageFlagBits ShaderTypeFromString(const std::string_view type)
 	{
 		if (type == "vert")	return VK_SHADER_STAGE_VERTEX_BIT;
 		if (type == "frag")	return VK_SHADER_STAGE_FRAGMENT_BIT;
@@ -25,7 +25,7 @@ namespace Siho::ShaderUtils {
 		return VK_SHADER_STAGE_ALL;
 	}
 
-	inline static const char* ShaderStageToString(const VkShaderStageFlagBits stage)
+	static const char* ShaderStageToString(const VkShaderStageFlagBits stage)
 	{
 		switch (stage)
 		{
@@ -37,7 +37,7 @@ namespace Siho::ShaderUtils {
 		return "UNKNOWN";
 	}
 
-	inline static shaderc_shader_kind ShaderStageToShaderC(const VkShaderStageFlagBits stage)
+	static shaderc_shader_kind ShaderStageToShaderC(const VkShaderStageFlagBits stage)
 	{
 		switch (stage)
 		{

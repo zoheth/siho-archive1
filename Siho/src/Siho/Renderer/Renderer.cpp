@@ -4,8 +4,18 @@
 #include "Shader.h"
 #include "ShaderPack.h"
 
+namespace Siho
+{
+	struct RendererData;
+}
+
+namespace 
+{
+	Siho::RendererConfig s_Config;
+	Siho::RendererData* s_Data = nullptr;
+}
+
 namespace Siho {
-	static RendererConfig s_Config;
 	
 	void Renderer::Init()
 	{
@@ -20,7 +30,6 @@ namespace Siho {
 		std::unordered_map<std::string, std::string> GlobalShaderMacros;
 	};
 
-	static RendererData* s_Data = nullptr;
 
 	Ref<ShaderLibrary> Renderer::GetShaderLibrary()
 	{

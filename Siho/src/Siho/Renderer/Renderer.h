@@ -28,7 +28,7 @@ namespace Siho {
 		static void Submit(FuncT&& func)
 		{
 			auto renderCmd = [](void* ptr) {
-				auto pFunc = (FuncT*)ptr;
+				auto pFunc = static_cast<FuncT*>(ptr);
 				(*pFunc)();
 
 				// NOTE: Instead of destroying we could try and enforce all items to be trivally destructible
@@ -44,7 +44,7 @@ namespace Siho {
 		static void SubmitResourceFree(FuncT&& func)
 		{
 			auto renderCmd = [](void* ptr) {
-				auto pFunc = (FuncT*)ptr;
+				auto pFunc = static_cast<FuncT*>(ptr);
 				(*pFunc)();
 
 				// NOTE: Instead of destroying we could try and enforce all items to be trivally destructible
@@ -57,7 +57,7 @@ namespace Siho {
 				{
 					const uint32_t index = Renderer::RT_GetCurrentFrameIndex();
 					auto storageBuffer = GetRenderResourceReleaseQueue(index).Allocate(renderCmd, sizeof(func));
-					new (storageBuffer) FuncT(std::forward<FuncT>((FuncT&&)func));
+					new (storageBuffer) FuncT(std::forward<FuncT>(static_cast<FuncT&&>(func)));
 				});
 		}
 
