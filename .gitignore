@@ -1,0 +1,17 @@
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.csproj
+**.nsight-gfxproj
+**.DotSettings
+**.user
+
+# Directories
+.vs/
+out/
+
+# Files
+*.user
